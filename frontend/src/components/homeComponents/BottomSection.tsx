@@ -2,7 +2,7 @@ import React from 'react'
 
 const BottomSection = () => {
   return (
-    <div className='grid grid-cols-2 bg-slate-500 mt-24'>
+    <div className='grid lg:grid-cols-2 bg-slate-500 mt-24'>
         <div className='w-full h-full flex items-center col-span-1 p-6'>
             <img className="rounded-md" src="https://static.theprint.in/wp-content/uploads/2018/09/GettyImages-3208896-e1538278655793-696x442.jpg?compress=true&quality=80&w=376&dpr=2.6" alt="" />
         </div>

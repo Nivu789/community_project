@@ -1,16 +1,16 @@
 import React from 'react'
 import { motion } from "framer-motion"
-import Button from './Button'
+import Button from '../Button'
 
 const MidSection = () => {
   return (
     <div className='flex flex-col max-h-fit'>
-        <div className='h-1/2 flex items-center justify-center text-4xl bg-neutral-400 flex-col'>
-                <div className='pt-16'>
+        <div className='h-1/2 flex items-center justify-center text-4xl flex-col'>
+                <div className='pt-16 bg-neutral-400 w-full text-center pb-16'>
                 So many ways to get involved
                 </div>
             
-            <div className='flex gap-4 max-h-fit'>
+            <div className='flex gap-4 max-h-fit lg:flex-row flex-col'>
             <motion.div className="flex items-center flex-col" animate={{ y: 50 }}
             transition={{ ease: "easeOut", duration: 2 }}>
                 <img src="https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Social-Club-Attend-Exclusive-Events-Ocrelys-Wild-Apricot.png" alt="" />
