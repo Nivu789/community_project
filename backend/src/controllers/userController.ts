@@ -20,3 +20,18 @@ export const memberLogin = async(req:Request,res:Response,next: NextFunction) =>
     }
 }
 
+export const adminLogin = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+       const {username,password} = req.body.data
+       const user = await USER.findOne({username})
+       if(user?.isAdmin && user.password===password){
+        const adminToken = jwt.sign({user:user.id},process.env.JWT_SECRET || "")
+        res.json({message:"Welcome admin",adminToken:adminToken})
+       } else{
+        res.json({error:"You are not an admin"})
+       }
+    } catch (error) {
+        console.log(error)
+    }
+}
+

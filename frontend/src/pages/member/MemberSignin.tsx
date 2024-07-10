@@ -4,6 +4,7 @@ import axios from 'axios'
 import 'react-toastify/dist/ReactToastify.css';
 import { toast , ToastContainer} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../config/config';
 
 const MemberSignin = () => {
 
@@ -21,7 +22,7 @@ const MemberSignin = () => {
     formState: { errors },
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-      axios.post('http://localhost:3000/user/login',{data})
+      axios.post(`${BASE_URL}/user/login`,{data})
       .then((response)=>{
         if(response.data.message){
           toast.success(response.data.message,{
