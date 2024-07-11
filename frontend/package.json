@@ -13,6 +13,7 @@
     "@react-spring/parallax": "^9.7.3",
     "@react-spring/web": "^9.7.3",
     "@wojtekmaj/react-daterange-picker": "^6.0.0",
+    "@wojtekmaj/react-timerange-picker": "^6.0.0",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.12",
@@ -26,6 +27,7 @@
     "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5",
     "rsuite": "^5.65.1",
+    "sweetalert2": "^11.12.2",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

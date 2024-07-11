@@ -3,11 +3,19 @@ import moment from 'moment'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
+import Swal from 'sweetalert2'
+import axios from 'axios';
+import { BASE_URL } from '../../config/config';
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
+import '@wojtekmaj/react-timerange-picker/dist/TimeRangePicker.css';
+import 'react-clock/dist/Clock.css';
 
 
-type ValuePiece = Date | null;
+type ValuePiece = Date | null | string;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -21,41 +29,100 @@ type Inputs = {
 
 const HostEvent = () => {
 
+  const navigate = useNavigate()
+
   const localizer = momentLocalizer(moment)
 
   const [value, onChange] = useState<Value>([new Date(), new Date()]);
+
+  const [time, onChangeTime] = useState<Value>(['10:00', '11:00']);
+
+  const [events,setEvents] = useState([])
 
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const eventData = {
-      ...data,
-      dates: value,
-    };
-    console.log('Event Data:', eventData);
+    
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        const eventData = {
+          ...data,
+          dates: value,
+          time:time
+        };
+        console.log('Event Data:', eventData);
+        axios.post(`${BASE_URL}/admin/post-event`,{
+          eventData
+        },{
+          headers:{
+          Authorization:localStorage.getItem("adminToken")
+        }}).then((response)=>{
+          if(response.data.error){
+            Swal.fire(response.data.error);
+            toast.error(response.data.error,{
+              onClose:()=>{
+                navigate('/admin/signin')}
+            })
+          }else{
+            Swal.fire(response.data.message);
+            reset()
+          }
+        })
+
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   }
   
-  const myEventsList = [
-    {
-      title: "Test 1",
-      start: new Date(2024, 6, 8),
-      end: new Date(2024, 6, 8)
-    },
-    {
-      title: "Test 2",
-      start: new Date(2024, 7, 9),
-      end: new Date(2024, 7, 9),
-      time: "10:00am"
-    },
-  ]
+  const test = [2024, 6, 11, 10, 0, 0];
+  const test2 = new Date(test[0], test[1], test[2], test[3], test[4], test[5])
+  console.log(test2)
+
+ useEffect(()=>{
+  console.log(new Date(2024, 6, 11, 10, 0, 0))
+    axios.get(`${BASE_URL}/admin/get-events`,{
+      headers:{
+        Authorization:localStorage.getItem("adminToken")
+      }
+    })
+    .then((response)=>{
+      const result = response.data.events
+      console.log(result)
+      const extractedData = result.map((item:{title:string,startDate:[],endDate:[]})=>({
+        title:item.title,
+        start:new Date(...item.startDate),
+        end:new Date(...item.endDate)
+      }))
+      console.log(extractedData)
+      setEvents(extractedData)
+    })
+ },[handleSubmit,events])
 
   return (
     <>
+    <ToastContainer position="top-right"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      theme="light"
+      />
       <div className='text-white p-3 text-4xl'>
         Host event
       </div>
@@ -90,8 +157,17 @@ const HostEvent = () => {
               <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
 
                 <div className='bg-white text-sm w-fit p-1'>
-                  <DateRangePicker onChange={onChange} value={value} className="text-black text-sm"/>
+                  <DateRangePicker onChange={onChange} value={value} className="text-black text-sm" required/>
                 </div>
+
+              </div>
+
+              <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
+
+                <div className='bg-white text-sm w-fit p-1'>
+                <TimeRangePicker onChange={onChangeTime} value={time} className="text-black text-sm"/>
+                </div>
+                
               </div>
               <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
@@ -102,7 +178,7 @@ const HostEvent = () => {
         <div className="h-[800px] overflow-auto col-span-6 px-5 bg-zinc-400">
           <Calendar
             localizer={localizer}
-            events={myEventsList}
+            events={events}
             startAccessor="start"
             endAccessor="end"
             className="text-black"
