@@ -13,6 +13,7 @@ import Protector from './components/Protector'
 import IsAdminAuthenticated from './components/IsAdminAuthenticated'
 import SetEvents from './pages/admin/SetEvents'
 import HostEvent from './pages/admin/HostEvent'
+import CropImage from './components/adminComponents/CropImage'
 
 
 function App() {
@@ -31,7 +32,10 @@ function App() {
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>
                 <Route path='events' element={<Protector><SetEvents/></Protector>}></Route>
-                <Route path='host-event' element={<Protector><HostEvent/></Protector>}></Route>
+                <Route path='host-event' element={<Protector><HostEvent/></Protector>}>
+                    
+                </Route>
+                <Route path='crop' element={<Protector><CropImage/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>

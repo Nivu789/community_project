@@ -1,11 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import { convert } from "../helpers/formatDataAndTime";
 import EVENT from "../models/eventModel";
+import moment from 'moment-timezone';
 
 export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
     try {
         const {title,description,venue,seats,dates,time} = req.body.eventData
-        const formatedDates = convert(dates,time)
+        const startDateIST = moment(dates[0]).tz('Asia/Kolkata').format('YYYY-MM-DD');
+        const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
+        const finalDate = [startDateIST,endDateIST]
+        console.log("final",finalDate)
+        const formatedDates = convert(finalDate,time)
         const startDate = (formatedDates[0])
         const endDate = (formatedDates[1])
         console.log(formatedDates)

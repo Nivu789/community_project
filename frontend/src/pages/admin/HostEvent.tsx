@@ -13,6 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
 import '@wojtekmaj/react-timerange-picker/dist/TimeRangePicker.css';
 import 'react-clock/dist/Clock.css';
+import { useDispatch } from 'react-redux';
+import { setImage } from '../../store/imageSlice';
+import { Link } from 'react-router-dom';
+
 
 
 type ValuePiece = Date | null | string;
@@ -39,6 +43,12 @@ const HostEvent = () => {
 
   const [events,setEvents] = useState([])
 
+  const [imgSrc, setImgSrc] = useState<string | null>(null)
+
+  const [eventAdded,setEventAdded] = useState(false)
+
+  const dispatch = useDispatch()
+
   const {
     register,
     handleSubmit,
@@ -46,6 +56,7 @@ const HostEvent = () => {
     reset,
     formState: { errors },
   } = useForm<Inputs>()
+
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     
@@ -57,6 +68,7 @@ const HostEvent = () => {
       denyButtonText: `Don't save`
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
+      
       if (result.isConfirmed) {
         const eventData = {
           ...data,
@@ -85,12 +97,11 @@ const HostEvent = () => {
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
+      setEventAdded(!eventAdded)
     });
+
   }
   
-  const test = [2024, 6, 11, 10, 0, 0];
-  const test2 = new Date(test[0], test[1], test[2], test[3], test[4], test[5])
-  console.log(test2)
 
  useEffect(()=>{
   console.log(new Date(2024, 6, 11, 10, 0, 0))
@@ -110,7 +121,26 @@ const HostEvent = () => {
       console.log(extractedData)
       setEvents(extractedData)
     })
- },[handleSubmit,events])
+ },[eventAdded])
+
+
+
+ function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
+  console.log("called")
+  if (e.target.files && e.target.files.length > 0) {
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      if (event.target) {
+        const imgSrc = event.target.result as string; // Cast result to string
+        setImgSrc(imgSrc); // Update state with image source
+        dispatch(setImage(imgSrc)); // Dispatch action to set image source in Redux store
+      }
+    };
+    
+    console.log("imgSrc",imgSrc)
+    reader.readAsDataURL(e.target.files[0])
+  }
+}
 
   return (
     <>
@@ -171,8 +201,15 @@ const HostEvent = () => {
               </div>
               <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
-
+            
           </div>
+          <div className='p-2'>
+          <input type="file" accept="image/*" onChange={onSelectFile} />
+          {imgSrc && <img src={imgSrc} alt="Selected" className="h-44 w-full mt-2" />}
+          </div>
+          {imgSrc && <div className='p-2'>
+            <Link to='/admin/dashboard/crop'><button className='text-sm bg-yellow-400 text-black p-2 rounded-md'>Crop image</button></Link>
+          </div>}
         </div>
 
         <div className="h-[800px] overflow-auto col-span-6 px-5 bg-zinc-400">

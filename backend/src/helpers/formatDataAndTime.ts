@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 type DateTuple = [number, number, number, number, number, number];
 
 export function convert(dates: string[], time: string[]): DateTuple[] {
@@ -6,10 +8,11 @@ export function convert(dates: string[], time: string[]): DateTuple[] {
   
     function convertToDate(dateStr: string, timeStr: string): DateTuple {
       const [hours, minutes] = timeStr.split(':').map(Number);
-      const date = new Date(dateStr);
-      const year = date.getUTCFullYear();
-      const month = date.getUTCMonth();
-      const day = date.getUTCDate();
+      const dateTimeStr = `${dateStr}T${timeStr}:00.000+05:30`; // Construct the date-time string with IST offset
+      const date = moment.tz(dateTimeStr, 'Asia/Kolkata');
+      const year = date.year();
+      const month = date.month();
+      const day = date.date();
       return [year, month, day, hours, minutes, 0];
     }
     
