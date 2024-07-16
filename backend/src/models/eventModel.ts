@@ -19,6 +19,9 @@ const eventSchema = new mongoose.Schema({
     },
     endDate:{
         type:Array
+    },
+    img:{
+        type:String
     }
 })
 

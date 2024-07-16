@@ -10,6 +10,7 @@ export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
         const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const finalDate = [startDateIST,endDateIST]
         console.log("final",finalDate)
+        console.log("image location from 2nd route",req.body.imageLocation)
         const formatedDates = convert(finalDate,time)
         const startDate = (formatedDates[0])
         const endDate = (formatedDates[1])
@@ -20,7 +21,8 @@ export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
             venue,
             seats,
             startDate,
-            endDate
+            endDate,
+            img:req.body.imageLocation
         })
 
         if(postEvent){
@@ -42,6 +44,20 @@ export const getEvents = async(req:Request,res:Response,next:NextFunction) =>{
         }else{
             res.json([])
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getEventInfo = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const eventId = req.params.id
+        const event = await EVENT.findById({_id:eventId})
+        if(event){
+            return res.json({eventInfo:event})
+        }
+
+        return res.json({error:"Something went wrong while getting event"})
     } catch (error) {
         console.log(error)
     }

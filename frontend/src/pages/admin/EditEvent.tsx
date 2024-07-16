@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import { setImage } from '../../store/imageSlice';
 import { Link } from 'react-router-dom';
 import { useFetchImageFromStore } from '../../hooks/useFetchImageFromStore';
+import { useFetchEventInfo } from '../../hooks/useFetchEventInfo';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -32,7 +34,7 @@ type Inputs = {
   seats:string
 }
 
-const HostEvent = () => {
+const EditEvent = () => {
 
   const {croppedImage} = useFetchImageFromStore()
 
@@ -50,8 +52,13 @@ const HostEvent = () => {
 
   const [eventAdded,setEventAdded] = useState(false)
 
+  const [datesFrominfo,setDatesFromInfo] = useState<Value>([new Date(), new Date()])
+
+  const [timeFromInfo,setTimeFromInfo] = useState<Value>(['',''])
+
   const dispatch = useDispatch()
 
+  
   const {
     register,
     handleSubmit,
@@ -60,6 +67,33 @@ const HostEvent = () => {
     formState: { errors },
   } = useForm<Inputs>()
 
+  const { id } = useParams()
+
+  const {eventInfo}:any = useFetchEventInfo({id})
+
+  useEffect(()=>{
+    if(eventInfo){
+        reset({
+            title:eventInfo.title,
+            description:eventInfo.desc,
+            venue:eventInfo.venue,
+            seats:eventInfo.seats
+        })
+        
+        const startDate = new Date(...eventInfo.startDate)
+        const endDate = new Date(...eventInfo.endDate)
+        setDatesFromInfo([startDate,endDate])
+        console.log(eventInfo.startDate)
+        console.log(eventInfo.endDate)
+        const startTime = eventInfo.startDate.splice(3,1).toString()+":"+eventInfo.startDate.splice(3,2).toString()
+        const endTime = eventInfo.endDate.splice(3,1).toString()+":00"+eventInfo.endDate.splice(3,1).toString()
+        console.log(eventInfo.endDate)
+        console.log(startTime,endTime)
+        setTimeFromInfo([`${startTime}`,`${endTime}`])
+    
+    }
+    console.log(eventInfo)
+  },[eventInfo])
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     
@@ -75,8 +109,8 @@ const HostEvent = () => {
       if (result.isConfirmed) {
         const eventData = {
           ...data,
-          dates: value,
-          time:time,
+          dates: datesFrominfo?datesFrominfo:value,
+          time:timeFromInfo?timeFromInfo:time,
           imgSrc,
           folderName:"eventImages/"
         };
@@ -197,7 +231,7 @@ const HostEvent = () => {
               <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
 
                 <div className='bg-white text-sm w-fit p-1'>
-                  <DateRangePicker onChange={onChange} value={value} className="text-black text-sm" required/>
+                  <DateRangePicker onChange={onChange} value={datesFrominfo?datesFrominfo:value} className="text-black text-sm" required/>
                 </div>
 
               </div>
@@ -205,7 +239,7 @@ const HostEvent = () => {
               <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
 
                 <div className='bg-white text-sm w-fit p-1'>
-                <TimeRangePicker onChange={onChangeTime} value={time} className="text-black text-sm"/>
+                <TimeRangePicker onChange={onChangeTime} value={timeFromInfo?timeFromInfo:time} className="text-black text-sm"/>
                 </div>
                 
               </div>
@@ -238,4 +272,4 @@ const HostEvent = () => {
   )
 }
 
-export default HostEvent
+export default EditEvent

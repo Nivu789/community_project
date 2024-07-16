@@ -19,7 +19,7 @@ const SetEvents = () => {
     }).catch((err)=>{
       toast.error(err)
     })
-  },[events])
+  },[])
 
   return (
     <>
