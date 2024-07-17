@@ -15,6 +15,8 @@ import SetEvents from './pages/admin/SetEvents'
 import HostEvent from './pages/admin/HostEvent'
 import CropImage from './components/adminComponents/CropImage'
 import EditEvent from './pages/admin/EditEvent'
+import Gallery from './pages/admin/Gallery'
+import UploadFiles from './pages/admin/UploadFiles'
 
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
                 <Route path='host-event' element={<Protector><HostEvent/></Protector>}></Route>
                 <Route path='crop' element={<Protector><CropImage/></Protector>}></Route>
                 <Route path='edit-event/:id' element={<Protector><EditEvent/></Protector>}></Route>
+                <Route path='gallery' element={<Protector><Gallery/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>

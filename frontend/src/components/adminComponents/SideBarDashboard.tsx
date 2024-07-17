@@ -8,9 +8,9 @@ const SideBarDashboard = () => {
             <Link to={'/admin/dashboard/events'}><div className='w-full bg-slate-400 p-4 opacity-80 hover:opacity-100 hover:text-white cursor-pointer'>
                 Events
             </div></Link>
-            <div className='w-full bg-slate-400 p-4 opacity-70 hover:opacity-100 hover:text-white cursor-pointer'>
+            <Link to={'/admin/dashboard/gallery'}><div className='w-full bg-slate-400 p-4 opacity-70 hover:opacity-100 hover:text-white cursor-pointer'>
                 Gallery
-            </div>
+            </div></Link>
         </div>
     </div>
   )

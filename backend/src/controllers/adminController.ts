@@ -62,3 +62,44 @@ export const getEventInfo = async(req:Request,res:Response,next:NextFunction) =>
         console.log(error)
     }
 }
+
+export const editEventInfo = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const {title,description,venue,seats,dates,time} = req.body.eventData
+        const startDateIST = moment(dates[0]).tz('Asia/Kolkata').format('YYYY-MM-DD');
+        const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
+        const finalDate = [startDateIST,endDateIST]
+        console.log("final",finalDate)
+        console.log("image location from 2nd route",req.body.imageLocation)
+        const formatedDates = convert(finalDate,time)
+        const startDate = (formatedDates[0])
+        const endDate = (formatedDates[1])
+        console.log(formatedDates)
+        const id = req.params.id
+        const updateEventInfo = await EVENT.updateOne({_id:id},{$set:{title,desc:description,venue,seats,startDate,
+            endDate,
+            img:req.body.imageLocation}})
+        if(updateEventInfo){
+            res.json({message:"Updated information successfully"})
+        }else{
+            res.json({error:"Something went wrong while updating"})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const removeEvent = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        console.log("dsdsd")
+        const id = req.params.id
+        const deleteEvent = await EVENT.deleteOne({_id:id})
+        if(deleteEvent){
+            res.json({message:"Removed event successfully"})
+        }else{
+            res.json({error:"Something went wrong on removing"})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}

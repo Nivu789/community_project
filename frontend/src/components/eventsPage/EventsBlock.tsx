@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom"
 import EventCard from "./EventCard"
 import { SlCalender } from "react-icons/sl";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../config/config";
 
 
 const EventsBlock = () => {
 
-    const events = [
-        {
-            title:"Event 1",
-            desc:"sdkdfsflskvdvsinsvjksvlvndsvlnsvnsnvjsnvnsvihvlsvnsilvnlskvsjvnsvjisvlsnvnenvlsnvonvsjvsnv",
-            img:"https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Exclusive%20Events/Social-Club-Exclusive-Events-Dinner-Out-Ocrelys-Wild-Apricot.jpg"
-        },
-        {
-            title:"Event 1",
-            desc:"sdkdfsflskvdvsinsvjksvlvndsvlnsvnsnvjsnvnsvihvlsvnsilvnlskvsjvnsvjisvlsnvnenvlsnvonvsjvsnv",
-            img:"https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Exclusive%20Events/Social-Club-Exclusive-Events-Dinner-Out-Ocrelys-Wild-Apricot.jpg"
-        }
-    ]
+    const [events,setEvents] = useState([])
+
+    useEffect(()=>{
+        axios.get(`${BASE_URL}/user/events`)
+        .then((response)=>{
+            if(response.data.events){
+                setEvents(response.data.events)
+            }
+        })
+    },[])
+
+    
   return (
     <>
     <div className="flex lg:justify-end justify-start mt-6 px-3">

@@ -3,7 +3,7 @@ import moment from 'moment'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 import Swal from 'sweetalert2'
 import axios from 'axios';
@@ -70,6 +70,13 @@ const EditEvent = () => {
   const { id } = useParams()
 
   const {eventInfo}:any = useFetchEventInfo({id})
+  
+  useEffect(()=>{
+    console.log("fefef")
+    setDatesFromInfo(null)
+    setTimeFromInfo(null)
+  },[value,time])
+
 
   useEffect(()=>{
     if(eventInfo){
@@ -85,15 +92,21 @@ const EditEvent = () => {
         setDatesFromInfo([startDate,endDate])
         console.log(eventInfo.startDate)
         console.log(eventInfo.endDate)
-        const startTime = eventInfo.startDate.splice(3,1).toString()+":"+eventInfo.startDate.splice(3,2).toString()
-        const endTime = eventInfo.endDate.splice(3,1).toString()+":00"+eventInfo.endDate.splice(3,1).toString()
-        console.log(eventInfo.endDate)
-        console.log(startTime,endTime)
-        setTimeFromInfo([`${startTime}`,`${endTime}`])
+        const startTime = eventInfo.startDate
+        const startTimeSpliced = startTime.splice(3,1).toString()+":"+startTime.splice(3,2).toString().replace(',',"")
+        const endTime = eventInfo.endDate
+        const endTimeSpliced = endTime.splice(3,1).toString()+":"+endTime.splice(3,2).toString().replace(',',"")
+        console.log(eventInfo.startDate,eventInfo.endDate)
+        console.log(startTimeSpliced,endTimeSpliced)
+        setTimeFromInfo([`${startTimeSpliced}`,`${endTimeSpliced}`])
+        setImgSrc(eventInfo.img)
     
     }
     console.log(eventInfo)
   },[eventInfo])
+
+
+ 
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     
@@ -115,7 +128,7 @@ const EditEvent = () => {
           folderName:"eventImages/"
         };
         console.log('Event Data:', eventData);
-        axios.post(`${BASE_URL}/admin/post-event`,{
+        axios.post(`${BASE_URL}/admin/post-edited-event/${id}`,{
           eventData
         },{
           headers:{
@@ -123,13 +136,13 @@ const EditEvent = () => {
         }}).then((response)=>{
           if(response.data.error){
             Swal.fire(response.data.error);
-            toast.error(response.data.error,{
-              onClose:()=>{
-                navigate('/admin/signin')}
-            })
+            toast.error(response.data.error)
           }else{
-            Swal.fire(response.data.message);
-            reset()
+            toast.success(response.data.message,{
+              onClose:()=>{
+                navigate('/admin/dashboard/events')
+              }
+            })
           }
         })
 

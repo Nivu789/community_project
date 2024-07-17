@@ -1,10 +1,15 @@
-
+import moment from "moment"
 
 interface EventProps {
     data:{
         title:string,
         desc:string,
-        img:string
+        img:string,
+        seats:string,
+        startDate:[],
+        endDate:[],
+        _id:string,
+        venue:string
     }
     
 }
@@ -20,22 +25,22 @@ const EventCard = ({data}:EventProps) => {
             <div className='flex gap-2'>
                 <div className='flex flex-col'>
                 <label htmlFor="Start">Start:</label>
-                <label htmlFor="Start">Start:</label>
+                <label htmlFor="Start">End:</label>
                 <label htmlFor="Start">Venue:</label>
                 <label htmlFor="Start">Spaces left:</label>
                 </div>
                 <div className='font-semibold'>
-                    <h1>1 July 2024</h1>
-                    <h1>29 July 2024</h1>
-                    <h1>Main hall</h1>
-                    <h1>Open to all</h1>
+                    <h1>{moment(data.startDate).format("MMM Do YY")}</h1>
+                    <h1>{moment(data.endDate).format("MMM Do YY")}</h1>
+                    <h1>{data.venue}</h1>
+                    <h1>{data.seats}</h1>
                 </div>
             </div>
         </div>
         
         <div className='flex gap-4'>
-            <div className='w-44 h-full'>
-                <img className="bg-cover bg-center" src={data.img} alt="" />
+            <div className='w-44 h-full relative'>
+                <img className="object-cover h-full w-full" src={data.img} alt="" />
             </div>
             <div className='flex flex-col gap-2'>
                 <div className='text-4xl font-bold'>{data.title}</div>

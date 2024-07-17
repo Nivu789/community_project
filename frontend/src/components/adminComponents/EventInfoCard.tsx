@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import moment from "moment"
 
+import { EventHandler, MouseEventHandler } from "react"
+
 interface EventCardProps {
     data:{
         title:string,
@@ -10,12 +12,15 @@ interface EventCardProps {
         startDate:[],
         endDate:[],
         img:string
-        _id:string
+        _id:string,
     }
+    onClick:MouseEventHandler<HTMLButtonElement>
 }
 
-const EventInfoCard = ({data}:EventCardProps) => {
+const EventInfoCard = ({data,onClick}:EventCardProps) => {
     
+    
+
   return (
     <>
     
@@ -41,18 +46,18 @@ const EventInfoCard = ({data}:EventCardProps) => {
             </div>
         </div>
         
-        <div className='flex gap-4'>
+        <div className='flex gap-4 w-full'>
             <div className='w-44 max-h-32 p-1 rounded-sm'>
                 <img className="object-cover w-full h-full" src={data.img || ""} alt="" />
             </div>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 w-1/2'>
                 <div className='lg:text-4xl font-bold text-xl'>{data.title}</div>
                 <div className='lg:text-xl hidden lg:block'>{data.desc.length > 50 ? data.desc.slice(0,30)+"...":data.desc}</div>
                 <div className='lg:text-xl lg:hidden'>{data.desc.length > 50 ? data.desc.slice(0,30)+"...":data.desc}</div>
             </div>
-            <div className="flex justify-end w-1/4 gap-6 items-center">
+            <div className="flex justify-end max-w-1/4 gap-6 items-center">
                 <Link to={`/admin/dashboard/edit-event/${data._id}`}><button className="bg-orange-300 h-fit py-2 text-xl font-bold px-6 rounded-lg">Edit</button></Link>
-                <button className="bg-red-500 h-fit py-2 text-xl font-bold px-6 rounded-lg">Delete</button>
+                <button className="bg-red-500 h-fit py-2 text-xl font-bold px-6 rounded-lg" onClick={onClick}>Delete</button>
             </div>
         </div>
     </div>

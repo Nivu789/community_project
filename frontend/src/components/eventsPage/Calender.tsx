@@ -3,24 +3,30 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { Link } from 'react-router-dom'
 import { CiBoxList } from "react-icons/ci";
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../../config/config';
+
 
 
 const Calender = () => {
     const localizer = momentLocalizer(moment)
+    const [events,setEvents] = useState([])
+    useEffect(()=>{
+      
+        axios.get(`${BASE_URL}/user/events`)
+        .then((response)=>{
+          const result = response.data.events
+          const extractedData = result.map((item:{title:string,startDate:[],endDate:[]})=>({
+            title:item.title,
+            start:new Date(...item.startDate),
+            end:new Date(...item.endDate)
+          }))
+          console.log(extractedData)
+          setEvents(extractedData)
+        })
+     },[])
 
-    const myEventsList = [
-        {
-            title:"Test 1",
-            start:new Date(2024,6,8),
-            end:new Date(2024,6,8)
-        },
-        {
-            title:"Test 2",
-            start:new Date(2024,7,9),
-            end:new Date(2024,7,9),
-            time:"10:00am"
-        },
-    ]
   return (
     <>
     <div className='flex lg:justify-end justify-start mt-6 px-3'>
@@ -34,7 +40,7 @@ const Calender = () => {
     <div className="myCustomHeight h-screen mt-8">
     <Calendar
       localizer={localizer}
-      events={myEventsList}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       popup

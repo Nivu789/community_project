@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import USER from '../models/userModel';
 import jwt from 'jsonwebtoken'
+import EVENT from '../models/eventModel';
 
 
 export const memberLogin = async(req:Request,res:Response,next: NextFunction) =>{
@@ -30,6 +31,19 @@ export const adminLogin = async(req:Request,res:Response,next:NextFunction) =>{
        } else{
         res.json({error:"You are not an admin"})
        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getEvents = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const events = await EVENT.find({})
+        if(events){
+            res.json({events})
+        }else{
+            res.json({error:"Something went wrong"})
+        }
     } catch (error) {
         console.log(error)
     }
