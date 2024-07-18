@@ -6,12 +6,12 @@ import { NextFunction, Request, Response } from "express";
 const { S3Client } = require('@aws-sdk/client-s3')
 import multer from 'multer'
 import multerS3 from 'multer-s3'
+import { listFilesInS3 } from '../middlewares/listFilesInS3';
 
 
 
 
 export const adminRouter = express.Router()
-
 
 
 adminRouter.post('/post-event',adminAuth,s3Upload,postEvent)
@@ -23,6 +23,8 @@ adminRouter.get('/get-event-info/:id',adminAuth,getEventInfo)
 adminRouter.post('/post-edited-event/:id',adminAuth,s3Upload,editEventInfo)
 
 adminRouter.post('/remove-event/:id',adminAuth,removeEvent)
+
+adminRouter.post('/gallery-folders',adminAuth,listFilesInS3)
 
 const s3 = new S3Client({
     region: 'us-east-1',
@@ -42,13 +44,13 @@ const upload = multer({
       key: function (req:Request,file:Express.Multer.File, cb:any) {
         console.log(req)
         const folderName = req.body.folderName;
-        cb(null, `${folderName}/${Date.now().toString()}_${file.originalname}`);
+        cb(null, `gallery/${folderName}/${Date.now().toString()}_${file.originalname}`);
       }
     })
   })
 
   adminRouter.post('/gallery-upload', upload.array('photos', 3), function(req:Request, res:Response, next:NextFunction) {
-    // console.log(req.body)
+    console.log(req.body)
     if(req.files){
         res.send('Successfully uploaded ' + (req.files as Express.Multer.File[]).length + ' files!');
     }else{

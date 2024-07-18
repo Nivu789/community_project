@@ -15,6 +15,7 @@ const Header = () => {
         <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>HOME</NavLink>
         <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>JOIN US</NavLink>
         <NavLink to={'/activities'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>OUR ACTIVITIES</NavLink>
+        <NavLink to={'/gallery'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>GALLERY</NavLink>
         <NavLink to={'/events'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>EVENTS CALENDER</NavLink>
         <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>CONTACT</NavLink>
     </div>

@@ -17,6 +17,9 @@ import CropImage from './components/adminComponents/CropImage'
 import EditEvent from './pages/admin/EditEvent'
 import Gallery from './pages/admin/Gallery'
 import UploadFiles from './pages/admin/UploadFiles'
+import Folder from './pages/admin/Folder'
+import MemberGallery from './pages/member/MemberGallery'
+import MemberFolder from './pages/member/MemberFolder'
 
 
 function App() {
@@ -31,6 +34,8 @@ function App() {
             <Route path='events' element={<Events/>}></Route>
             <Route path='events/event-calender' element={<Calender/>}></Route>
             <Route path='member-login' element={<MemberSignin/>}></Route>
+            <Route path='gallery' element={<MemberGallery/>}></Route>
+            <Route path='gallery/:folderName' element={<MemberFolder/>}></Route>
         </Route>
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>
@@ -39,6 +44,7 @@ function App() {
                 <Route path='crop' element={<Protector><CropImage/></Protector>}></Route>
                 <Route path='edit-event/:id' element={<Protector><EditEvent/></Protector>}></Route>
                 <Route path='gallery' element={<Protector><Gallery/></Protector>}></Route>
+                <Route path='gallery/:folderName' element={<Protector><Folder/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>
