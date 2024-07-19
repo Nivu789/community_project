@@ -1,8 +1,29 @@
 import React from 'react'
+import { motion ,Variants} from "framer-motion"
 
 const BottomSection = () => {
+  const cardVariants: Variants = {
+    offscreen: {
+      x:300 ,
+      opacity:0
+    },
+    onscreen: {
+      x: 0,
+      rotate: 0,
+      opacity:100,
+      transition: {
+        type: "tween",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+
   return (
-    <div className='grid lg:grid-cols-2 bg-slate-500 mt-24'>
+    <motion.div className='grid lg:grid-cols-2 bg-slate-500 mt-24' initial="offscreen"
+    whileInView="onscreen"
+    viewport={{ once: true}}
+    variants={cardVariants}>
         <div className='w-full h-full flex items-center col-span-1 p-6'>
             <img className="rounded-md" src="https://static.theprint.in/wp-content/uploads/2018/09/GettyImages-3208896-e1538278655793-696x442.jpg?compress=true&quality=80&w=376&dpr=2.6" alt="" />
         </div>
@@ -13,7 +34,7 @@ const BottomSection = () => {
                 There are so many ways to get involved! We hope you'll take advantage of all the Club has to offer and enjoy getting to know the other members. We think you'll find that the International Social Club is a great way to connect with other expatriate women and experience everything your host country has to offer. Thanks for considering us!
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

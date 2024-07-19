@@ -1,10 +1,31 @@
 import React from 'react'
-import { motion } from "framer-motion"
+import { motion ,Variants} from "framer-motion"
 import Button from '../Button'
 
 const MidSection = () => {
+
+    const cardVariants: Variants = {
+        offscreen: {
+          x:-300, 
+          opacity:0
+        },
+        onscreen: {
+          x: 0,
+          rotate: 0,
+          opacity:100,
+          transition: {
+            type: "tween",
+            bounce: 0.4,
+            duration: 0.8
+          }
+        }
+      };
+
   return (
-    <div className='flex flex-col max-h-fit'>
+    <motion.div className='flex flex-col max-h-fit' initial="offscreen"
+    whileInView="onscreen"
+    viewport={{ once: true}}
+    variants={cardVariants}>
         <div className='h-1/2 flex items-center justify-center text-4xl flex-col'>
                 <div className='pt-16 bg-neutral-400 w-full text-center pb-16'>
                 So many ways to get involved
@@ -34,7 +55,7 @@ const MidSection = () => {
         
         </div>
         
-    </div>
+    </motion.div>
   )
 }
 
