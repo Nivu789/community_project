@@ -20,6 +20,7 @@ import UploadFiles from './pages/admin/UploadFiles'
 import Folder from './pages/admin/Folder'
 import MemberGallery from './pages/member/MemberGallery'
 import MemberFolder from './pages/member/MemberFolder'
+import About from './pages/About'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route index path='home' element={<Home/>}></Route>
             <Route path='activities' element={<Activities/>}></Route>
             <Route path='events' element={<Events/>}></Route>
+            <Route path='aboutus' element={<About/>}></Route>
             <Route path='events/event-calender' element={<Calender/>}></Route>
             <Route path='member-login' element={<MemberSignin/>}></Route>
             <Route path='gallery' element={<MemberGallery/>}></Route>

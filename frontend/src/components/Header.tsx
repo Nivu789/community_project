@@ -13,7 +13,7 @@ const Header = () => {
       <div className='flex flex-col'>
       <div className='lg:flex justify-between  p-3 rounded-md px-60 hidden font-bold'>
         <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>HOME</NavLink>
-        <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>JOIN US</NavLink>
+        <NavLink to={'/aboutus'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>ABOUT US</NavLink>
         <NavLink to={'/activities'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>OUR ACTIVITIES</NavLink>
         <NavLink to={'/gallery'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>GALLERY</NavLink>
         <NavLink to={'/events'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>EVENTS CALENDER</NavLink>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion , Variants  } from "framer-motion"
+import Announcement from './Announcement';
 
 const IntroSection = () => {
 
@@ -21,7 +22,7 @@ const IntroSection = () => {
       };
 
   return (
-    <motion.div className='grid lg:grid-cols-2 lg:h-[700px]' initial="offscreen"
+    <motion.div className='grid lg:grid-cols-3 lg:h-[700px]' initial="offscreen"
     whileInView="onscreen"
     viewport={{ once: true}}
     variants={cardVariants}>
@@ -51,6 +52,11 @@ const IntroSection = () => {
             <button className='bg-black text-white'>JOIN US</button>
             </div>
         </div>
+
+        <div>
+          <Announcement/>
+        </div>
+        
     </motion.div>
   )
 }
