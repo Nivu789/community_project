@@ -21,6 +21,7 @@ import Folder from './pages/admin/Folder'
 import MemberGallery from './pages/member/MemberGallery'
 import MemberFolder from './pages/member/MemberFolder'
 import About from './pages/About'
+import Announcements from './pages/admin/Announcements'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                 <Route path='edit-event/:id' element={<Protector><EditEvent/></Protector>}></Route>
                 <Route path='gallery' element={<Protector><Gallery/></Protector>}></Route>
                 <Route path='gallery/:folderName' element={<Protector><Folder/></Protector>}></Route>
+                <Route path='announcements' element={<Protector><Announcements/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>

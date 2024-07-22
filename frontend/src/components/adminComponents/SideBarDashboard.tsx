@@ -11,6 +11,9 @@ const SideBarDashboard = () => {
             <Link to={'/admin/dashboard/gallery'}><div className='w-full bg-slate-400 p-4 opacity-70 hover:opacity-100 hover:text-white cursor-pointer'>
                 Gallery
             </div></Link>
+            <Link to={'/admin/dashboard/announcements'}><div className='w-full bg-slate-400 p-4 opacity-70 hover:opacity-100 hover:text-white cursor-pointer'>
+                Announcements
+            </div></Link>
         </div>
     </div>
   )

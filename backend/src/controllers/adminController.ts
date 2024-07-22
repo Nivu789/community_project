@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { convert } from "../helpers/formatDataAndTime";
 import EVENT from "../models/eventModel";
 import moment from 'moment-timezone';
+import ANNOUNCEMENT from "../models/announcementModel";
 
 export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
     try {
@@ -98,6 +99,41 @@ export const removeEvent = async(req:Request,res:Response,next:NextFunction) =>{
             res.json({message:"Removed event successfully"})
         }else{
             res.json({error:"Something went wrong on removing"})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const postAnnouncement = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const {title,description,last_date} = req.body
+        const modifiedDate = last_date ? new Date(last_date) : null
+        const fileLocation = req.file ? (req.file as any).location : ""
+        const pushAnnouncement = await ANNOUNCEMENT.create({
+            title,
+            description,
+            lastDate:modifiedDate ? modifiedDate : null,
+            file:fileLocation
+        })
+        if(pushAnnouncement){
+            res.json({message:"Announcement made",success:true})
+        }else{
+            res.json({error:"Something went wrong",succes:false})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getAnnouncements = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const announcements = await ANNOUNCEMENT.find({})
+        if(announcements){
+            res.json({announcements,success:true})
+        }else{
+            res.json({error:"Something went wrong",succes:false})
         }
     } catch (error) {
         console.log(error)
