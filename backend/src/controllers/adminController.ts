@@ -107,14 +107,15 @@ export const removeEvent = async(req:Request,res:Response,next:NextFunction) =>{
 
 export const postAnnouncement = async(req:Request,res:Response,next:NextFunction) =>{
     try {
-        const {title,description,last_date} = req.body
+        const {title,description,last_date,showInHome} = req.body
         const modifiedDate = last_date ? new Date(last_date) : null
         const fileLocation = req.file ? (req.file as any).location : ""
         const pushAnnouncement = await ANNOUNCEMENT.create({
             title,
             description,
             lastDate:modifiedDate ? modifiedDate : null,
-            file:fileLocation
+            file:fileLocation,
+            showInHome
         })
         if(pushAnnouncement){
             res.json({message:"Announcement made",success:true})
@@ -134,6 +135,39 @@ export const getAnnouncements = async(req:Request,res:Response,next:NextFunction
             res.json({announcements,success:true})
         }else{
             res.json({error:"Something went wrong",succes:false})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const editAnnouncement = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const {title,description,last_date,id,showInHome} = req.body
+        const modifiedDate = last_date ? new Date(last_date) : null
+        const fileLocation = req.file ? (req.file as any).location : ""
+        if(fileLocation){
+            await ANNOUNCEMENT.updateOne({_id:id},{$set:{title:title,description:description,lastDate:modifiedDate,file:fileLocation,showInHome}})
+        }else{
+            await ANNOUNCEMENT.updateOne({_id:id},{$set:{title:title,description:description,lastDate:modifiedDate,showInHome}})
+        }
+
+        res.json({message:"Updated announcement",success:true})
+        
+    } catch (error) {
+        res.json({error:"Something went wrong",success:false})
+        console.log(error)
+    }
+}
+
+export const deleteAnnouncement = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const itemId = req.body.id
+        const deleteOne = await ANNOUNCEMENT.deleteOne({_id:itemId})
+        if(deleteOne){
+            res.json({message:"Removed announcement",success:true})
+        }else{
+            res.json({success:false})
         }
     } catch (error) {
         console.log(error)

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 type Props = {
     userType:string,
-    refetch:boolean
+    refetch?:boolean
 }
 
 type Announcement = {
@@ -13,11 +13,14 @@ type Announcement = {
     description:string,
     published:Date,
     lastDate:Date,
-    file:string
+    file:File
+    _id:string,
+    showInHome:boolean
     
 }
 
 export const useFetchAnnouncements = ({userType,refetch}:Props)  =>{
+    
     const [announcements,setAnnouncements] = useState<Announcement[]>([])
     useEffect(()=>{
         axios.get(`${BASE_URL}/${userType}/get-announcements`,{

@@ -17,6 +17,9 @@ const announcementSchema = new mongoose.Schema({
     },
     file:{
         type:String
+    },
+    showInHome:{
+        type:Boolean
     }
 })
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import { adminLogin, getEvents, memberLogin } from '../controllers/userController'
+import { adminLogin, getAnnouncementsUser, getEvents, memberLogin } from '../controllers/userController'
 import { authMiddleware } from '../middlewares/authMiddleware'
 
 
@@ -12,3 +12,5 @@ userRouter.post('/login-admin',adminLogin)
 userRouter.get('/auth',authMiddleware)
 
 userRouter.get('/events',getEvents)
+
+userRouter.get('/get-announcements',getAnnouncementsUser)

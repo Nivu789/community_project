@@ -20,6 +20,7 @@ const fileUpload = multer({
             cb(null, Object.assign({}, req.body));
         },
         key: function (req: Request, file: Express.Multer.File, cb: any) {
+            console.log("ddsdsd")
             cb(null, `docs/${Date.now().toString()}_${file.originalname}`);
         }
     })

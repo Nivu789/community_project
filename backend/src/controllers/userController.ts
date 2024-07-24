@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import USER from '../models/userModel';
 import jwt from 'jsonwebtoken'
 import EVENT from '../models/eventModel';
+import ANNOUNCEMENT from '../models/announcementModel';
 
 
 export const memberLogin = async(req:Request,res:Response,next: NextFunction) =>{
@@ -43,6 +44,20 @@ export const getEvents = async(req:Request,res:Response,next:NextFunction) =>{
             res.json({events})
         }else{
             res.json({error:"Something went wrong"})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getAnnouncementsUser = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        
+        const announcements = await ANNOUNCEMENT.find({showInHome:true})
+        if(announcements){
+            res.json({announcements,success:true})
+        }else{
+            res.json({error:"Something went wrong",succes:false})
         }
     } catch (error) {
         console.log(error)
