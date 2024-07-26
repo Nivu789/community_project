@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useFetchAnnouncements } from '../../hooks/useFetchAnnouncements'
 import moment from 'moment'
 import { FaFilePdf } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
+import { MdOutlineReadMore } from "react-icons/md";
 
 type Announcement = {
     
@@ -29,8 +31,8 @@ const Announcement = () => {
       }, [announcements]);
 
     
-      if(announcements.length>6){
-        useEffect(()=>{
+      useEffect(()=>{
+            if(announcementsFromHook && announcementsFromHook.length>6){
             const interval = setInterval(() => {
                 setIsAnimating(true);
                 setTimeout(() => {
@@ -46,23 +48,24 @@ const Announcement = () => {
                 }, 100);
                 // Match this duration with the CSS animation duration
             }, 4000);
-    
-    
+            
+            
             return (()=>clearInterval(interval))
+        }
         },[announcementsFromHook])
-      }
     
 
   return (
     <div className='announcement-container lg:h-[700px] flex gap-1 pl-6'>
-        <div className='text-xl'>
-            Announcements
+        <div className='text-xl flex justify-between'>
+            <div>Announcements</div>
+            <Link to={'/allannouncements'}><div className='flex items-center gap-2'>See more<MdOutlineReadMore /></div></Link>
         </div>
         <span className='w-full bg-blue-500 block'>&nbsp;</span>
         {announcementsFromHook && announcementsFromHook.length > 0 ? 
         
         <div>
-        {announcementsFromHook.map((item,index)=>(
+        {announcementsFromHook && announcementsFromHook.map((item,index)=>(
             <div className={`announcement-item ${isAnimating && index === 0 ? 'slide-out' : 'slide-in'} flex bg-blue-200  border shadow-2xl`} key={item._id}>
                 
                 <div className='min-w-64'>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 type Props = {
     userType:string,
     refetch?:boolean
+    showAll?:boolean
 }
 
 type Announcement = {
@@ -19,13 +20,14 @@ type Announcement = {
     
 }
 
-export const useFetchAnnouncements = ({userType,refetch}:Props)  =>{
+export const useFetchAnnouncements = ({userType,refetch,showAll}:Props)  =>{
     
     const [announcements,setAnnouncements] = useState<Announcement[]>([])
     useEffect(()=>{
         axios.get(`${BASE_URL}/${userType}/get-announcements`,{
             headers:{
-                Authorization:localStorage.getItem("adminToken")
+                Authorization:localStorage.getItem("adminToken"),
+                'X-Show-All': showAll?.toString()
             }
         }).then((response)=>{
             if(response.data.success){

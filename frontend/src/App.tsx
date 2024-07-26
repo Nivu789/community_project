@@ -22,6 +22,7 @@ import MemberGallery from './pages/member/MemberGallery'
 import MemberFolder from './pages/member/MemberFolder'
 import About from './pages/About'
 import Announcements from './pages/admin/Announcements'
+import AllAnnouncement from './components/homeComponents/AllAnnouncement'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route path='member-login' element={<MemberSignin/>}></Route>
             <Route path='gallery' element={<MemberGallery/>}></Route>
             <Route path='gallery/:folderName' element={<MemberFolder/>}></Route>
+            <Route path='allannouncements' element={<AllAnnouncement/>}></Route>
         </Route>
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>

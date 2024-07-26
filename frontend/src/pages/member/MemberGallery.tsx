@@ -7,7 +7,7 @@ const MemberGallery = () => {
 
     const [refetch,setRefetch] = useState(false)
 
-    const {list,loading} = useListFilesInGallery(refetch,"")
+    const {list,loading} = useListFilesInGallery(refetch,"","user")
     console.log(list)
   return (
     <Container>

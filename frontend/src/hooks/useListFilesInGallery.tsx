@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import axios from "axios";
 import { BASE_URL } from "../config/config";
 
 
 
-export const useListFilesInGallery = (refetch:boolean,prefix:string) =>{
+export const useListFilesInGallery = (refetch:boolean,prefix:string,userType="admin") =>{
     const [list,setList] = useState([])
     const [loading,setLoading] = useState(true)
-
     useEffect(()=>{
         try {
-            axios.post(`${BASE_URL}/admin/gallery-folders`,{prefix:prefix},{
+            axios.post(`${BASE_URL}/admin/gallery-folders`,{prefix:prefix,userType},{
                 headers:{
                     Authorization:localStorage.getItem("adminToken"),
                 }

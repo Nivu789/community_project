@@ -8,7 +8,7 @@ const MemberFolder = () => {
     const {folderName} = useParams()
     const [refetch,setRefetch] = useState(false)
 
-    const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "")
+    const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "","user")
     console.log(list)
 
   return (

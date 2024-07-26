@@ -11,13 +11,14 @@ const Header = () => {
     <>
     <Container>
       <div className='flex flex-col'>
-      <div className='lg:flex justify-between  p-3 rounded-md px-60 hidden font-bold'>
-        <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>HOME</NavLink>
-        <NavLink to={'/aboutus'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>ABOUT US</NavLink>
-        <NavLink to={'/activities'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>OUR ACTIVITIES</NavLink>
-        <NavLink to={'/gallery'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>GALLERY</NavLink>
-        <NavLink to={'/events'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>EVENTS CALENDER</NavLink>
-        <NavLink to={'/home'} className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "" : ""}>CONTACT</NavLink>
+      <div className='lg:flex  justify-center gap-x-11 p-3 rounded-md  hidden font-bold bg-blue-700 text-white border-yellow-500 border-4'>
+        <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>HOME</NavLink>
+        <NavLink to={'/aboutus'} className={"text-black bg-white p-2 rounded-full px-6"}>ABOUT US</NavLink>
+        <NavLink to={'/activities'} className={"text-black bg-white p-2 rounded-full px-6"}>OUR ACTIVITIES</NavLink>
+        <NavLink to={'/gallery'} className={"text-black bg-white p-2 rounded-full px-6"}>GALLERY</NavLink>
+        <NavLink to={'/events'} className={"text-black bg-white p-2 rounded-full px-6"}>EVENTS CALENDER</NavLink>
+        <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>CONTACT</NavLink>
+        <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>CONTACT</NavLink>
     </div>
     <div className='lg:flex items-center hidden mt-6 pb-4'>
       <div className='mx-auto'>
