@@ -3,6 +3,8 @@ import Container from './Container'
 import { IoMenu } from "react-icons/io5";
 import { useState } from 'react';
 import Button from './Button';
+import {motion} from 'framer-motion'
+
 
 
 const Header = () => {
@@ -22,19 +24,20 @@ const Header = () => {
         <NavLink to={'/events'} className={"text-black bg-white p-2 rounded-full px-6"}>EVENTS CALENDER</NavLink>
         <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>CONTACT</NavLink>
         <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"} onMouseEnter={()=>setSubComMenu(true)} onMouseLeave={()=>setSubComMenu(false)}>SUB COMMITIES
-        {subComMenu && <div className='absolute bg-orange-400 flex lex-col gap-2  rounded-md'>
+        {subComMenu && <motion.div animate={{ y: 3 }} transition={{ ease: "linear", duration: 1, type: "spring" }} className='absolute bg-orange-400 flex lex-col gap-2 rounded-md'>
                         <ul>
                           <li className='p-2 hover:bg-orange-600'>women</li>
                           <li className='p-2 hover:bg-orange-600'>children</li>
                           <li className='p-2 hover:bg-orange-600'>ex-service men</li>
                           <li className='p-2 hover:bg-orange-600'>farmers</li>
                         </ul>
-                      </div>}
+                      </motion.div>}
         </NavLink>
     </div>
     <div className='lg:flex items-center hidden mt-6 pb-4'>
       <div className='mx-auto'>
-      <Button to='/member-login' text='Member Login'></Button>
+      {/* <Button to='/member-login' text='Member Login'></Button> */}
+      <img src="./logo.jpeg" alt="" className='h-36 w-36'/>
       </div>
     </div>
     </div>

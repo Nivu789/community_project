@@ -9,13 +9,15 @@ const Home = () => {
   return (
     <>
         <Container>
-            <IntroSection/>
+        <IntroSection/>
+            
         </Container>
         <Container>
             <MidSection/>
         </Container>
         <Container>
-            <BottomSection/>
+        <BottomSection/>
+        
         </Container>
     </>   
         

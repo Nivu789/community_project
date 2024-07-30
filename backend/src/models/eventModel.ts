@@ -20,6 +20,9 @@ const eventSchema = new mongoose.Schema({
     endDate:{
         type:Array
     },
+    showInHome:{
+        type:Boolean
+    },
     img:{
         type:String
     }

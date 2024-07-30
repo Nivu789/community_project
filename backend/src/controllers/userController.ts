@@ -39,12 +39,23 @@ export const adminLogin = async (req: Request, res: Response, next: NextFunction
 
 export const getEvents = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const events = await EVENT.find({})
-        if (events) {
-            res.json({ events })
+        if (req.query.showInHome) {
+            const events = await EVENT.find({showInHome:true})
+            if (events) {
+                res.json({ events })
+            } else {
+                res.json({ error: "Something went wrong" })
+            }
         } else {
-            res.json({ error: "Something went wrong" })
+            
+            const events = await EVENT.find({})
+            if (events) {
+                res.json({ events })
+            } else {
+                res.json({ error: "Something went wrong" })
+            }
         }
+
     } catch (error) {
         console.log(error)
     }
@@ -53,7 +64,7 @@ export const getEvents = async (req: Request, res: Response, next: NextFunction)
 export const getAnnouncementsUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const showAll = req.headers['x-show-all']
-        
+
         if (showAll) {
             const announcements = await ANNOUNCEMENT.find({})
             if (announcements) {

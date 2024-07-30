@@ -31,7 +31,8 @@ type Inputs = {
   description: string
   venue:string
   dates:string[]
-  seats:string
+  seats:string,
+  showInHome:boolean
 }
 
 const EditEvent = () => {
@@ -84,7 +85,8 @@ const EditEvent = () => {
             title:eventInfo.title,
             description:eventInfo.desc,
             venue:eventInfo.venue,
-            seats:eventInfo.seats
+            seats:eventInfo.seats,
+            showInHome:eventInfo.showInHome
         })
         
         const startDate = new Date(...eventInfo.startDate)
@@ -256,6 +258,17 @@ const EditEvent = () => {
                 </div>
                 
               </div>
+
+              <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
+
+                <div className='text-white text-sm w-fit p-1 flex items-center gap-2'>
+                <label htmlFor='showInHome'>Show in home</label>
+                <input type="checkbox" id='showInHome' {...register("showInHome")}/>
+                </div>
+                
+                
+              </div>
+              
               <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
             

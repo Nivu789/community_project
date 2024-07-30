@@ -6,7 +6,7 @@ import ANNOUNCEMENT from "../models/announcementModel";
 
 export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
     try {
-        const {title,description,venue,seats,dates,time} = req.body.eventData
+        const {title,description,venue,seats,dates,time,showInHome} = req.body.eventData
         const startDateIST = moment(dates[0]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const finalDate = [startDateIST,endDateIST]
@@ -23,6 +23,7 @@ export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
             seats,
             startDate,
             endDate,
+            showInHome,
             img:req.body.imageLocation
         })
 
@@ -66,7 +67,7 @@ export const getEventInfo = async(req:Request,res:Response,next:NextFunction) =>
 
 export const editEventInfo = async(req:Request,res:Response,next:NextFunction) =>{
     try {
-        const {title,description,venue,seats,dates,time} = req.body.eventData
+        const {title,description,venue,seats,dates,time,showInHome} = req.body.eventData
         const startDateIST = moment(dates[0]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const finalDate = [startDateIST,endDateIST]
@@ -78,7 +79,7 @@ export const editEventInfo = async(req:Request,res:Response,next:NextFunction) =
         console.log(formatedDates)
         const id = req.params.id
         const updateEventInfo = await EVENT.updateOne({_id:id},{$set:{title,desc:description,venue,seats,startDate,
-            endDate,
+            endDate, showInHome,
             img:req.body.imageLocation}})
         if(updateEventInfo){
             res.json({message:"Updated information successfully"})
