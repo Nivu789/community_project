@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion ,Variants} from "framer-motion"
 import Button from '../Button'
+import { Carousel } from '../Carousel';
 
 const MidSection = () => {
 
@@ -21,6 +22,7 @@ const MidSection = () => {
         }
       };
 
+      const images = ["./donate.jpg","./donate.jpg"]
   return (
     <motion.div className='flex flex-col max-h-fit' initial="offscreen"
     whileInView="onscreen"
@@ -31,30 +33,17 @@ const MidSection = () => {
                 So many ways to get involved
                 </div>
             
-            <div className='flex gap-4 max-h-fit lg:flex-row flex-col'>
-            <motion.div className="flex items-center flex-col" animate={{ y: 50 }}
-            transition={{ ease: "easeOut", duration: 2 }}>
-                <img src="https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Social-Club-Attend-Exclusive-Events-Ocrelys-Wild-Apricot.png" alt="" />
-                <Button text='Attend exclusive events' to='/'/>
-            </motion.div>
+          <div className='flex lg:flex-row flex-col  bg-red-500 w-full justify-center h-[800px]'>
+            <div className="flex w-full flex-col items-center gap-3 h-full bg-red-800">
+                <Carousel images={images}/>
+                <div className=''>
+                    <Button text='Attend exclusive events' to='/'/>
+                </div>
+            </div>
 
-            <motion.div className="flex items-center flex-col" animate={{ y: 50 }}
-            transition={{ ease: "easeOut", duration: 2 }}>
-                <img src="https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Social-Club-Attend-Exclusive-Events-Ocrelys-Wild-Apricot.png" alt="" />
-                <Button text='Participate in events' to='/'/>
-            </motion.div>
-
-            <motion.div className="flex items-center flex-col" animate={{ y: 50 }}
-            transition={{ ease: "easeOut", duration: 2 }}>
-                <img src="https://socialclub-ocrelys.wildapricot.org/resources/Pictures/Social-Club-Attend-Exclusive-Events-Ocrelys-Wild-Apricot.png" alt="" />
-                <Button text='Donate and volunteer' to='/'/>
-            </motion.div>
-        </div>
-        </div>
-        <div>
-        
-        </div>
-        
+          </div>
+          </div>
+          
     </motion.div>
   )
 }

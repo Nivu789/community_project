@@ -1,3 +1,6 @@
+
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,7 +8,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: { 
+        "Oswald": ['Oswald', 'sans-serif'] ,
+        "lato": ['Lato', 'sans-serif'] ,
+        "malayalam":['Noto Serif Malayalam', 'serif']
+    }
+    },
   },
   plugins: [],
 }

@@ -34,10 +34,11 @@ const Header = () => {
                       </motion.div>}
         </NavLink>
     </div>
-    <div className='lg:flex items-center hidden mt-6 pb-4'>
+    <div className='lg:flex items-center hidden mt-6'>
       <div className='mx-auto'>
       {/* <Button to='/member-login' text='Member Login'></Button> */}
-      <img src="./logo.jpeg" alt="" className='h-36 w-36'/>
+      {/* <img src="./logo.png" alt="" className='h-36 w-36'/> */}
+      <div className='text-6xl pt-3 text-orange-500 font-outline-2 font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div>
       </div>
     </div>
     </div>
