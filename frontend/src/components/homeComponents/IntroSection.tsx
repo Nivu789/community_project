@@ -4,6 +4,7 @@ import Announcement from './Announcement';
 import Carousel from "framer-motion-carousel";
 import axios from 'axios';
 import { BASE_URL } from '../../config/config';
+import { Carousel as CustomCarousel } from '../Carousel'
 
 const IntroSection = () => {
 
@@ -41,6 +42,23 @@ const IntroSection = () => {
         })
         console.log(images)
       },[])
+
+
+      const imagesSet = [
+        {
+          location:"./gandhi.jpg",
+          buttonText:"Donate and Volunteer"
+        },
+        {
+          location:"./gandhi4.jpg",
+          buttonText:"Attend Exclusive Events"
+        },
+        {
+          location:"./gandhi3.jpg",
+          buttonText:"Honor and Appreciate"
+        },
+      ]
+
 
   return (
     <motion.div className='grid lg:grid-cols-3 lg:h-[700px]' initial="offscreen"
@@ -85,17 +103,14 @@ const IntroSection = () => {
             </div>
         </div>
         
-        <div className='bg-orange-100 text-xl p-5 flex flex-col justify-around mt-8'>
+        <div className='bg-orange-100 text-xl flex flex-col justify-around mt-8'>
           <div className='flex justify-center'>
-          <img src="./logo.png" alt="" className='h-52 w-52 brightness-150'/>
+          <img src="./logo.png" alt="" className='h-40 w-40 brightness-150'/>
           </div>
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptas laborum nesciunt corporis ab quia minima, repellat optio facilis quaerat illo veniam animi magnam id tenetur? Ipsum nostrum quia facilis.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio minus minima dolorem, sequi atque quas consectetur repudiandae, iste saepe non culpa incidunt magni quibusdam. Quia dignissimos rem animi aperiam saepe.
-            </div>
-            <div className='flex lg:justify-end justify-center mt-3'>
-            <button className='bg-black text-white'>JOIN US</button>
-            </div>
+            {/* <div>
+              <img src="./gandhi.jpg" alt="" />
+            </div> */}
+            <CustomCarousel images={imagesSet} interval={3000} className="w-full h-full object-cover object-center"/>
         </div>
 
         <div>

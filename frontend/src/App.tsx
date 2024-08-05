@@ -23,9 +23,38 @@ import MemberFolder from './pages/member/MemberFolder'
 import About from './pages/About'
 import Announcements from './pages/admin/Announcements'
 import AllAnnouncement from './components/homeComponents/AllAnnouncement'
+import Test from './pages/Test'
+
 
 
 function App() {
+
+  const Card = [
+    {
+      id: 1,
+    content: <Activities/>,
+    className: "h-full col-span-1",
+    thumbnail: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 2,
+    content: <Activities/>,
+    className: "h-1/2 w-full",
+    thumbnail: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 3,
+    content: <Activities/>,
+    className: "h-1/2",
+    thumbnail: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      id: 4,
+    content: <Activities/>,
+    className: "h-1/2",
+    thumbnail: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    }
+  ]
 
   return (
     <>
@@ -41,6 +70,7 @@ function App() {
             <Route path='gallery' element={<MemberGallery/>}></Route>
             <Route path='gallery/:folderName' element={<MemberFolder/>}></Route>
             <Route path='allannouncements' element={<AllAnnouncement/>}></Route>
+            <Route path='test' element={<Test/>}></Route>
         </Route>
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>

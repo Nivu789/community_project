@@ -4,6 +4,7 @@ import moment from 'moment'
 import { FaFilePdf } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { MdOutlineReadMore } from "react-icons/md";
+import {motion} from 'framer-motion'
 
 type Announcement = {
     
@@ -58,10 +59,10 @@ const Announcement = () => {
   return (
     <div className='announcement-container lg:h-[700px] flex gap-1 pl-6'>
         <div className='text-xl flex justify-between'>
-            <div>Announcements</div>
+            <div className='flex'><img src="./loud.gif" className="w-20 h-20 absolute" alt="" /><motion.div className='pl-16 text-blue-700' animate={{scale:1.2}} transition={{duration:1,repeat: Infinity, repeatType: "reverse"}}>Announcements</motion.div></div>
             <Link to={'/allannouncements'}><div className='flex items-center gap-2'>See more<MdOutlineReadMore /></div></Link>
         </div>
-        <span className='w-full bg-orange-800 block'>&nbsp;</span>
+        <div className='w-full bg-orange-800 block' >&nbsp;</div>
         {announcementsFromHook && announcementsFromHook.length > 0 ? 
         
         <div>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import Button from './Button'
+
 
 type CarouselProp = {
-    images:string[]
-    interval?:number
+    images:{ location: string; buttonText: string; }[]
+    interval?:number,
+    className?:string
 }
-export const Carousel = ({images,interval=3000}:CarouselProp) => {
+export const Carousel = ({images,interval=6000,className}:CarouselProp) => {
     const [activeIndex,setActiveIndex] = useState(0)
     
     const nextSlide = () =>{
@@ -25,8 +28,14 @@ export const Carousel = ({images,interval=3000}:CarouselProp) => {
     },[interval])
 
   return (
-    <div className='bg-red-950'>
-        <img src={images[activeIndex]} className="max-w-full max-h-full object-contain"></img>
-    </div>
+        <>
+        <div className="flex w-full flex-col items-center bg-orange-900 h-full">
+                <img src={images[activeIndex].location} className={className?className:"w-full h-full object-cover object-center"}></img>
+                <div className='flex items-center justify-center'>
+                    {/* <Button text={images[activeIndex].buttonText} to='/'/> */}
+                </div>
+            </div>
+            
+        </>
   )
 }
