@@ -9,6 +9,8 @@ type Card = {
   content: JSX.Element | React.ReactNode | string;
   className: string;
   thumbnail: string;
+  cardText:string;
+  textMargin?:number
 };
 
 export const PartOneTest = ({ cards }: { cards: Card[] }) => {
@@ -26,7 +28,7 @@ export const PartOneTest = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-[1850px]">
     <div className="w-full h-full py-10 grid lg:grid-cols-1 gap-4">
       {cards && cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
@@ -44,6 +46,7 @@ export const PartOneTest = ({ cards }: { cards: Card[] }) => {
             layoutId={`card-${card.id}`}
           >
             {selected?.id === card.id && <SelectedCard selected={selected} />}
+            <div className={`z-10 absolute text-xl mx-4 bg-white w-full drop-shadow-xl px-2 rounded-l-lg`} style={{ marginTop: `${card.textMargin || 820}px` }}>{card.cardText}</div>
             <ImageComponent card={card} />
           </motion.div>
         </div>
@@ -69,7 +72,7 @@ const ImageComponent = ({ card }: { card: Card }) => {
       height="500"
       width="500"
       className={cn(
-        "object-cover object-top absolute inset-0 h-full w-full transition duration-200"
+         `object-cover absolute inset-0 h-full w-full transition duration-200 hover:scale-110 hover:brightness-50`
       )}
       alt="thumbnail"
     />
@@ -106,7 +109,7 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="relative px-8 pb-4 z-[70]"
+        className="relative z-[70]"
       >
         {selected?.content}
       </motion.div>

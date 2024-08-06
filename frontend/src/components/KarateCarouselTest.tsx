@@ -16,7 +16,7 @@ const KarateCarouselTest = () => {
     ]
 
   return (
-    <Carousel images={images}/>
+    <Carousel images={images} singleButton={true} buttonText='Check it out'/>
   )
 }
 
