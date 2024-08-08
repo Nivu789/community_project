@@ -15,10 +15,10 @@ const Home = () => {
         <Container>
             <MidSection/>
         </Container>
-        <Container>
+        {/* <Container>
         <BottomSection/>
         
-        </Container>
+        </Container> */}
     </>   
         
   )

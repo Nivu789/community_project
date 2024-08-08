@@ -4,6 +4,10 @@ import { IoMenu } from "react-icons/io5";
 import { useState } from 'react';
 import Button from './Button';
 import {motion} from 'framer-motion'
+import MenuItem from './MenuItem';
+import { menuItemsData } from './menuItems';
+import MobileNav from './MobileNav';
+import Marquee from 'react-fast-marquee'
 
 
 
@@ -12,10 +16,12 @@ const Header = () => {
 
   const [subComMenu,setSubComMenu] = useState(false)
 
+  const depthLevel = 0;
+
   return (
     <>
     <Container>
-      <div className='flex flex-col'>
+      {/* <div className='flex flex-col'>
       <div className='lg:flex  justify-center gap-x-11 p-3 rounded-md  hidden font-bold bg-blue-700 text-white border-yellow-500 border-4'>
         <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>HOME</NavLink>
         <NavLink to={'/aboutus'} className={"text-black bg-white p-2 rounded-full px-6"}>ABOUT US</NavLink>
@@ -36,22 +42,32 @@ const Header = () => {
     </div>
     <div className='lg:flex items-center hidden mt-6'>
       <div className='mx-auto'>
-      {/* <Button to='/member-login' text='Member Login'></Button> */}
-      {/* <img src="./logo.png" alt="" className='h-36 w-36'/> */}
+      
       <div className='text-6xl pt-3 text-orange-500 font-outline-2 font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div>
       </div>
     </div>
+    </div> */}
+    <div>
+      <ul className='lg:flex w-full justify-center hidden bg-blue-800'>
+        {menuItemsData.map((menu)=>(
+          <MenuItem item={menu} depthLevel={depthLevel}/>
+        ))}
+      </ul>
+      <div className='lg:hidden block'>
+        <MobileNav/>
+      </div>
     </div>
-    
+    <Marquee className='overflow-y-hidden h-24' gradient direction='right' speed={100}><div className='text-5xl  text-orange-500 font-outline-2 font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div></Marquee>
+    <Marquee className='overflow-y-hidden h-14' speed={100} gradient><div className='text-5xl  text-orange-500 font-outline-2 font-malayalam font-semibold'>SAMSKRITHI PULLUR</div></Marquee>
     </Container>
     
-    <div className='w-full bg-blue-300 lg:hidden h-10'>
+    {/* <div className='w-full bg-blue-300 lg:hidden h-10'>
     <div className='bg-blue-700 w-fit block h-full p-3'>
     <IoMenu className='text-3xl' onClick={()=>setMobileMenu(!mobileMenu)}/>
     </div>
-    </div>
+    </div> */}
 
-    {mobileMenu &&
+    {/* {mobileMenu &&
 
       <div className='grid z-10 absolute w-full bg-blue-200 lg:hidden'>
         <div className='flex flex-col col-span-1 p-6'>
@@ -66,7 +82,7 @@ const Header = () => {
       </div>
       </div>
     
-    }
+    } */}
     </>
   )
 }

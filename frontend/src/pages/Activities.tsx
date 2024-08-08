@@ -59,17 +59,12 @@ const Activities = () => {
   
   return (
     <Container>
-    <div className="grid grid-cols-2">
+    <div className="grid lg:grid-cols-2 p-2 bg-orange-100">
         <div className="">
             <PartOneTest cards={Card1}/>
         </div>
         <div className="">
             <PartTwoTest cards={Card2}/>
-        </div>
-    </div>
-    <div className="grid grid-cols-1">
-        <div>
-          {/* <PartThreeTest cards={Card3}/> */}
         </div>
     </div>
     </Container>

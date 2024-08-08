@@ -28,8 +28,8 @@ export const PartOneTest = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="h-[1850px]">
-    <div className="w-full h-full py-10 grid lg:grid-cols-1 gap-4">
+    <div className="lg:h-[1850px] max-sm:h-[1380px] max-sm:mt-12">
+    <div className="w-full lg:h-full lg:py-10 grid lg:grid-cols-1 max-sm:gap-12 lg:gap-4 max-sm:h-[1800px] max-sm:px-10">
       {cards && cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div

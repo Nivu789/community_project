@@ -28,7 +28,7 @@ export const PartTwoTest = ({ cards }: { cards: Card[] }) => {
 
   return (
     <div className="h-[1410px]">
-    <div className="w-full h-full p-10 grid md:grid-cols-3 mx-auto gap-4 lg:grid-cols-1">
+    <div className="w-full h-full p-10 grid md:grid-cols-3 mx-auto gap-4 lg:grid-cols-1 max-sm:gap-12">
       {cards && cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div
@@ -46,7 +46,7 @@ export const PartTwoTest = ({ cards }: { cards: Card[] }) => {
             layoutId={`card-${card.id}`}
           >
             {selected?.id === card.id && <SelectedCard selected={selected} />}
-            <div className="z-10 absolute text-xl mx-4 bg-white w-full my-96 drop-shadow-xl px-2 rounded-l-lg">{card.cardText}</div>
+            <div className="z-10 absolute text-xl mx-4 bg-white w-full my-96 drop-shadow-xl px-2 rounded-l-lg max-sm:mt-[360px]">{card.cardText}</div>
             <ImageComponent card={card}/>
           </motion.div>
         </div>

@@ -54,3 +54,5 @@ body,
 .announcement-item:hover {
     animation-play-state: paused; /* Pauses the animation on hover */
 }
+
+

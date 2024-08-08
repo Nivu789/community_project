@@ -57,7 +57,7 @@ const Announcement = () => {
     
 
   return (
-    <div className='announcement-container lg:h-[700px] flex gap-1 pl-6'>
+    <div className='announcement-container lg:h-[700px] flex gap-1 lg:pl-6'>
         <div className='text-xl flex justify-between'>
             <div className='flex'><img src="./loud.gif" className="w-20 h-20 absolute" alt="" /><motion.div className='pl-16 text-blue-700' animate={{scale:1.2}} transition={{duration:1,repeat: Infinity, repeatType: "reverse"}}>Announcements</motion.div></div>
             <Link to={'/allannouncements'}><div className='flex items-center gap-2'>See more<MdOutlineReadMore /></div></Link>
