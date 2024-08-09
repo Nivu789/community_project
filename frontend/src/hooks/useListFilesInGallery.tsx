@@ -9,6 +9,7 @@ export const useListFilesInGallery = (refetch:boolean,prefix:string,userType="ad
     const [loading,setLoading] = useState(true)
     useEffect(()=>{
         try {
+            setLoading(true)
             axios.post(`${BASE_URL}/admin/gallery-folders`,{prefix:prefix,userType},{
                 headers:{
                     Authorization:localStorage.getItem("adminToken"),

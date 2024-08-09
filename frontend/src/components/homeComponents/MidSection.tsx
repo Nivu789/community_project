@@ -47,7 +47,7 @@ const MidSection = () => {
                 SO MANY WAYS TO GET INVOLVED
                 </div>
             
-          <div className='flex flex-col  bg-orange-400 w-full justify-center h-[600px]'>
+          <div className='flex flex-col  bg-orange-400 w-full justify-center h-[800px]'>
             <Carousel images={images}/>
           
           </div>

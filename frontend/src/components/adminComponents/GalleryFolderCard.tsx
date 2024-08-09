@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -17,11 +17,11 @@ const GalleryFolderCard = ({folderName,dir,imgSrc,className}:GalleryFolderCardPr
         <PhotoProvider>
         <div className='w-full h-full'>
           <PhotoView key={imgSrc} src={imgSrc}>
-            <img className="object-cover object-center w-full h-full" src={imgSrc ? imgSrc :'https://www.rumorcontrol.us/wp-content/uploads/2023/02/the-weekend.jpeg'}/>
+            <img className="object-cover object-center w-full h-full bg-white" src={imgSrc ? imgSrc :'./logo.png'}/>
             </PhotoView>
         </div>
         </PhotoProvider>
-        {dir=="gallery" || dir=="member-gallery" ? <div>
+        {dir=="gallery" || dir=="member-gallery" ? <div className='bg-orange-800'>
             {folderName}
         </div>:null}
         

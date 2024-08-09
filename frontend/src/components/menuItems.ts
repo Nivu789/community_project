@@ -10,7 +10,7 @@ export const menuItemsData = [
     },
     {
       title: 'OUR ACTIVITIES',
-      url: '/about',
+      url: '/activities',
     },
     {
       title: 'GALLERY',

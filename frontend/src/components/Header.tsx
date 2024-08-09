@@ -57,7 +57,7 @@ const Header = () => {
         <MobileNav/>
       </div>
     </div>
-    <Marquee className='overflow-y-hidden h-24' gradient direction='right' speed={100}><div className='text-5xl  text-orange-500 font-outline-2 font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div></Marquee>
+    <Marquee className='overflow-y-hidden lg:h-24 h-36' gradient direction='right' speed={100}><div className='text-5xl  text-orange-500 font-outline-2 font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div></Marquee>
     <Marquee className='overflow-y-hidden h-14' speed={100} gradient><div className='text-5xl  text-orange-500 font-outline-2 font-malayalam font-semibold'>SAMSKRITHI PULLUR</div></Marquee>
     </Container>
     
