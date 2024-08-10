@@ -46,7 +46,8 @@ const upload = multer({
       key: function (req:Request,file:Express.Multer.File, cb:any) {
         console.log(req)
         const folderName = req.body.folderName;
-        cb(null, `gallery/${folderName}/${Date.now().toString()}_${file.originalname}`);
+        const rootfolder = req.body.rootFolder
+        cb(null, `${rootfolder?rootfolder:'gallery'}/${folderName}/${Date.now().toString()}_${file.originalname}`);
       }
     })
   })

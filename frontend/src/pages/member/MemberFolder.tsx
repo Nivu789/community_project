@@ -5,13 +5,35 @@ import { useListFilesInGallery } from '../../hooks/useListFilesInGallery'
 import Container from '../../components/Container'
 import ImageLoading from '../../components/ImageLoading'
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import Pagination from '../../components/Pagination'
 
 const MemberFolder = () => {
     const {folderName} = useParams()
     const [refetch,setRefetch] = useState(false)
 
     const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "","user")
-    console.log(list)
+    
+    const [currentPage,setCurrentPage] = useState(1)
+    const [postsPerPage] = useState(8)
+    const indexOfLastPost = currentPage * postsPerPage
+    const indexOfFirstPost = indexOfLastPost - postsPerPage
+    const currentPosts = list.slice(indexOfFirstPost,indexOfLastPost)
+
+    const paginate = (page:number) =>{
+      setCurrentPage(page)
+    }
+
+    const previousPage = () =>{
+      if(currentPage!==1){
+        setCurrentPage(currentPage - 1)
+      }
+    }
+
+    const nextPage = () =>{
+      if(currentPage!=Math.ceil(list.length/postsPerPage)){
+        setCurrentPage(currentPage+1)
+      }
+    }
 
   return (
     <Container>
@@ -23,11 +45,10 @@ const MemberFolder = () => {
 
         :
         
-        <div className='grid lg:grid-cols-4 lg:gap-60 lg:w-3/4 pt-4 lg:ml-5 h-fit grid-cols-2 ml-2'>
+        <div className='grid lg:grid-cols-4 lg:gap-60 lg:w-3/4 pt-4 lg:ml-5 grid-cols-2 ml-2 min-h-72'>
           <PhotoProvider>
-        {list && list.map((item,index)=>(
+        {currentPosts && currentPosts.map((item,index)=>(
           <>
-          {console.log(item)}
           <PhotoView key={index} src={`https://samskruthibucket.s3.amazonaws.com/${item}`}>
             <GalleryFolderCard dir='inFolder' imgSrc={`https://samskruthibucket.s3.amazonaws.com/${item}`} className='relative w-56 lg:w-72 h-40 flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
           </PhotoView>
@@ -36,6 +57,9 @@ const MemberFolder = () => {
         </PhotoProvider>
     </div>
     }
+    <div>
+      <Pagination postsPerPage={postsPerPage} totalPosts={list.length} currentPage={currentPage} paginate={paginate} previousPage={previousPage} nextPage={nextPage}/>
+    </div>
     </Container>
   )
 }

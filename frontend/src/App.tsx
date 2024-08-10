@@ -24,6 +24,9 @@ import About from './pages/About'
 import Announcements from './pages/admin/Announcements'
 import AllAnnouncement from './components/homeComponents/AllAnnouncement'
 import Test from './pages/Test'
+import ContactUs from './pages/ContactUs'
+import FarmersCommittee from './pages/committeePages/Committee'
+import CommitteeManagement from './pages/admin/CommitteeManagement'
 
 
 
@@ -71,6 +74,8 @@ function App() {
             <Route path='gallery/:folderName' element={<MemberFolder/>}></Route>
             <Route path='allannouncements' element={<AllAnnouncement/>}></Route>
             <Route path='test' element={<Test/>}></Route>
+            <Route path='contactus' element={<ContactUs/>}></Route>
+            <Route path='committee/:committeeName' element={<FarmersCommittee/>}></Route>
         </Route>
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>
@@ -81,6 +86,7 @@ function App() {
                 <Route path='gallery' element={<Protector><Gallery/></Protector>}></Route>
                 <Route path='gallery/:folderName' element={<Protector><Folder/></Protector>}></Route>
                 <Route path='announcements' element={<Protector><Announcements/></Protector>}></Route>
+                <Route path='committee/:committeeName' element={<Protector><CommitteeManagement/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>

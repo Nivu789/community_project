@@ -5,7 +5,7 @@ import Carousel from "framer-motion-carousel";
 import axios from 'axios';
 import { BASE_URL } from '../../config/config';
 import { Carousel as CustomCarousel } from '../Carousel'
-import { ImMenu } from "react-icons/im";
+
 
 const IntroSection = () => {
 

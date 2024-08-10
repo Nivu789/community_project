@@ -8,7 +8,8 @@ const s3 = new AWS.S3({
     
 });
 
-export const listFilesInS3 = (req:Request,res:Response,next:NextFunction) =>{
+
+export const fetchCommitteeImagesFromS3 = (req:Request,res:Response,next:NextFunction) =>{
     try {
         console.log("Working")
         return new Promise ((resolve, reject) => {
@@ -16,7 +17,7 @@ export const listFilesInS3 = (req:Request,res:Response,next:NextFunction) =>{
               Bucket: 'samskruthibucket',
               MaxKeys: 20,
               Delimiter: '/',
-              Prefix: 'gallery/'+req.body.prefix
+              Prefix: 'committees/'+req.body.prefix
             };
             s3.listObjectsV2 (s3params, (err, data) => {
               if (err) {
@@ -24,16 +25,7 @@ export const listFilesInS3 = (req:Request,res:Response,next:NextFunction) =>{
               }
               resolve (data);
               console.log("Data",data)
-              if(req.body.prefix==''){
-                if(data && data.CommonPrefixes ){
-                    const folders = data.CommonPrefixes.map(commonPrefix => {
-                        const fullPrefix = commonPrefix.Prefix || "";
-                        return fullPrefix.slice(('gallery/'+req.body.prefix).length, -1); // Extract the folder name
-                    });
-                    console.log("foldres",folders)
-                    return res.json({folders})
-                  }
-              }else{
+              if(req.body.prefix!==""){
                 if(data && data.Contents ){
                     const folders = data.Contents.map(content => {
                         return content.Key; // Extract the folder name
@@ -41,8 +33,8 @@ export const listFilesInS3 = (req:Request,res:Response,next:NextFunction) =>{
                     console.log("Folders",folders)
                     return res.json({folders})
                   }
-              }
               
+                }
               
             });
           }); 

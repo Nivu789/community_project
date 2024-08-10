@@ -18,18 +18,18 @@ export const menuItemsData = [
     },
     {
       title: 'EVENTS',
-      url: '/about',
+      url: '/events',
     },
     {
       title: 'CONTACT US',
-      url: '/about',
+      url: '/contactus',
     },
     {
       title: 'SUB COMMITIES',
       submenu:[
         {
           title:'കർഷക കൂട്ടായ്‌മ',
-          url:''
+          url:'committee/farmers-committee'
         },
         {
           title:'വിമുക്ത ഭട കൂട്ടായ്‌മ',
