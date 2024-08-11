@@ -16,6 +16,9 @@
     .font-outline-3 {
       -webkit-text-stroke: 1px rgb(255, 255, 255);
     }
+    .font-outline-5 {
+      -webkit-text-stroke: 3px white;
+    }
     
   }
 

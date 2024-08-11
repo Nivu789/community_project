@@ -1,9 +1,6 @@
-import { NavLink } from 'react-router-dom'
+
 import Container from './Container'
-import { IoMenu } from "react-icons/io5";
-import { useState } from 'react';
-import Button from './Button';
-import {motion} from 'framer-motion'
+
 import MenuItem from './MenuItem';
 import { menuItemsData } from './menuItems';
 import MobileNav from './MobileNav';
@@ -12,9 +9,7 @@ import Marquee from 'react-fast-marquee'
 
 
 const Header = () => {
-  const [mobileMenu,setMobileMenu] = useState(false)
-
-  const [subComMenu,setSubComMenu] = useState(false)
+  
 
   const depthLevel = 0;
 

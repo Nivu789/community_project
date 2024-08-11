@@ -33,15 +33,15 @@ export const menuItemsData = [
         },
         {
           title:'വിമുക്ത ഭട കൂട്ടായ്‌മ',
-          url:'',
+          url:'committee/army-committee',
         },
         {
           title:'വനിത കൂട്ടായ്‌മ',
-          url:''
+          url:'committee/wemen-committee'
         },
         {
           title:'ബാലവേദി',
-          url:''
+          url:'committee/children-committee'
         },
       ]
     },

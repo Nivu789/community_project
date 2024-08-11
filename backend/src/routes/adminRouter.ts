@@ -70,6 +70,8 @@ const upload = multer({
 
   adminRouter.post('/delete-file',deleteFileS3)
 
+  adminRouter.post('/delete-committee-image',deleteFileS3)
+
   adminRouter.get('/get-announcements',getAnnouncements)
 
 

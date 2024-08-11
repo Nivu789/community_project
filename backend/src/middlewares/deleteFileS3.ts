@@ -28,7 +28,19 @@ export const deleteFileS3 = (req:Request,res:Response,next:NextFunction) =>{
                 }
             }                 // deleted
           }); 
-        }else{
+
+        }else if(req.body.committeeFile){
+            console.log(req.body.committeeFile)
+            s3.deleteObject({Bucket:"samskruthibucket",Key:req.body.committeeFile}, async function(err, data) {
+            if (err){ 
+                console.log(err, err.stack);
+            }else{
+                return res.json({success:true})
+            }
+        })
+        }
+        
+        else{
             next()
         }
         

@@ -21,8 +21,10 @@ const SideBarDashboard = () => {
                 <div className='flex items-center gap-2'> Committee <IoIosArrowDropdownCircle onClick={()=>setDisplayCommitte(!displayCommittee)}/></div>
                 { displayCommittee &&
                     <ul className='py-4 bg-slate-600 text-white pl-4 flex flex-col gap-3'>
-                    <Link to={`/admin/dashboard/committee/${'farmers'}`}><li>Farmers</li></Link>
-                    <li>Army</li>
+                    <Link to={`/admin/dashboard/committee/${'farmers'}`}><li>കർഷക കൂട്ടായ്‌മ</li></Link>
+                    <Link to={`/admin/dashboard/committee/${'army'}`}><li>വിമുക്ത ഭട കൂട്ടായ്‌മ</li></Link>
+                    <Link to={`/admin/dashboard/committee/${'wemen'}`}><li>വനിത കൂട്ടായ്‌മ</li></Link>
+                    <Link to={`/admin/dashboard/committee/${'children'}`}><li>ബാലവേദി</li></Link>
                 </ul>
                 }
             </div></Link>
