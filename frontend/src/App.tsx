@@ -27,6 +27,8 @@ import Test from './pages/Test'
 import ContactUs from './pages/ContactUs'
 import FarmersCommittee from './pages/committeePages/Committee'
 import CommitteeManagement from './pages/admin/CommitteeManagement'
+import Activity from './pages/member/Activity'
+import ActivityManagement from './pages/admin/ActivityManagement'
 
 
 
@@ -66,6 +68,7 @@ function App() {
         <Route path='/' element={<Wrapper/>}>
             <Route index path='home' element={<Home/>}></Route>
             <Route path='activities' element={<Activities/>}></Route>
+            <Route path='activities/:activityName' element={<Activity/>}></Route>
             <Route path='events' element={<Events/>}></Route>
             <Route path='aboutus' element={<About/>}></Route>
             <Route path='events/event-calender' element={<Calender/>}></Route>
@@ -87,6 +90,7 @@ function App() {
                 <Route path='gallery/:folderName' element={<Protector><Folder/></Protector>}></Route>
                 <Route path='announcements' element={<Protector><Announcements/></Protector>}></Route>
                 <Route path='committee/:committeeName' element={<Protector><CommitteeManagement/></Protector>}></Route>
+                <Route path='activity/:activityName' element={<Protector><ActivityManagement/></Protector>}></Route>
             </Route>
         </Route>
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>

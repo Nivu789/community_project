@@ -6,7 +6,7 @@ import ANNOUNCEMENT from "../models/announcementModel";
 
 export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
     try {
-        const {title,description,venue,seats,dates,time,showInHome} = req.body.eventData
+        const {title,description,venue,seats,dates,time,showInHome,activity} = req.body.eventData
         const startDateIST = moment(dates[0]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const endDateIST = moment(dates[1]).tz('Asia/Kolkata').format('YYYY-MM-DD');
         const finalDate = [startDateIST,endDateIST]
@@ -24,6 +24,7 @@ export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
             startDate,
             endDate,
             showInHome,
+            activity,
             img:req.body.imageLocation
         })
 

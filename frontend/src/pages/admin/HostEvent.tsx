@@ -30,7 +30,8 @@ type Inputs = {
   venue:string
   dates:string[]
   seats:string,
-  showInHome:boolean
+  showInHome:boolean,
+  activity:string
 }
 
 const HostEvent = () => {
@@ -153,6 +154,7 @@ const HostEvent = () => {
   }
 }
 
+console.log(watch("activity"))
   return (
     <>
     <ToastContainer position="top-right"
@@ -192,6 +194,19 @@ const HostEvent = () => {
                     <option value="less than 50">less than 50</option>
                     <option value="less than 100">less than 100</option>
                     <option value="less than 200">less than 200</option>
+                  </select>
+                
+              </div>
+              <div>
+                
+                  <label htmlFor="activity" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select activity</label>
+                  <select {...register("activity")} id="activity" name="activity" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>General</option>
+                    <option value="Batmindon">Batmindon</option>
+                    <option value="Karate">Karate</option>
+                    <option value="Dance">Dance</option>
+                    <option value="Music">Music</option>
+                    <option value="Spoken English">Spoken English</option>
                   </select>
                 
               </div>

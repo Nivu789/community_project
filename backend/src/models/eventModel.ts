@@ -23,6 +23,9 @@ const eventSchema = new mongoose.Schema({
     showInHome:{
         type:Boolean
     },
+    activity:{
+        type:String
+    },
     img:{
         type:String
     }

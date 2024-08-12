@@ -89,3 +89,20 @@ export const getAnnouncementsUser = async (req: Request, res: Response, next: Ne
     }
 }
 
+
+export const fetchEventsOfActivity = async(req: Request, res: Response, next: NextFunction) =>{
+    try {
+        const {activityName} = req.body
+        const actualName = activityName.charAt(0).toUpperCase() + activityName.slice(1)
+        const eventData = await EVENT.find({activity:actualName})
+        if(eventData){
+            return res.json({success:"true",eventData})
+        }else{
+            return res.json({success:"false"})
+        }
+    } catch (error) {
+        console.log(error)
+        return res.json({message:"Something went wrong"})
+    }
+}
+

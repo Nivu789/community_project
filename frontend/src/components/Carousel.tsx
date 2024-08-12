@@ -9,8 +9,9 @@ type CarouselProp = {
     singleButton?:boolean,
     buttonText?:string;
     noButton?:boolean
+    to:string
 }
-export const Carousel = ({images,interval=6000,className,singleButton,buttonText,noButton}:CarouselProp) => {
+export const Carousel = ({images,interval=6000,className,singleButton,buttonText,noButton,to}:CarouselProp) => {
     const [activeIndex,setActiveIndex] = useState(0)
     
     const nextSlide = () =>{
@@ -35,7 +36,7 @@ export const Carousel = ({images,interval=6000,className,singleButton,buttonText
         <div className="flex w-full flex-col items-center bg-orange-900 h-full">
                 <img src={images[activeIndex].location} className={className?className:"w-full h-full lg:object-cover object-center"}></img>
                 <div className='flex items-center justify-center lg:h-full bg-brown-800 lg:w-full'>
-                    {!noButton && !singleButton ? <Button text={images[activeIndex].buttonText} to='/'/> : !noButton && <Button text={buttonText?buttonText : ""} to='/'/>}
+                    {!noButton && !singleButton ? <Button text={images[activeIndex].buttonText} to='/'/> : !noButton && <Button text={buttonText?buttonText : ""} to={to}/>}
                     {noButton && <div className='text-center text-white font-semibold'>{images[activeIndex].buttonText}</div>}
                 </div>
             </div>
