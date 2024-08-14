@@ -8,7 +8,7 @@ import { activityDetails } from "./activityDetails";
 import { useParams } from "react-router-dom";
 
 
-const KarateContent = () => {
+const DanceContent = () => {
 
   const [refetch] = useState(false)
 
@@ -21,6 +21,19 @@ const KarateContent = () => {
     faculty1Photo:string,
     faculty2Photo:string
 }
+
+const settingsSideImages = {
+  dots: false,
+  fade: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  waitForAnimate: false,
+  autoplay:true,
+  autoplaySpeed:5000,
+  arrows:false
+};
 
     const settings = {
         dots: true,
@@ -75,7 +88,7 @@ const KarateContent = () => {
       console.log(activityName)
       const {eventData} = useFetchEventsOfActivity(activityName||"")
 
-      const {images} = useFetchActivityImages(activityName+"/",refetch,activityName)
+      // const {images} = useFetchActivityImages(activityName+"/",refetch,activityName)
 
       
 
@@ -101,53 +114,71 @@ const KarateContent = () => {
     
 
     
-    
-    const words = ["Karate: Discipline, Strength, Spirit","STRIKE WITH PRECISION, DEFEND WITH HONOR"]
+    const words = ["Dance is the special freedom of imagination","Dance is the hidden language of the soul"]
   return (
     <>
-    <div className="text-4xl bg-black text-white font-Oswald text-center w-full items-center flex justify-around"><img src="/karateLogo.png" alt="" className="w-1/4 h-fit"/>Kempo Karate Do</div>
+    <div className="relative font-bold text-4xl bg-black text-white font-Oswald text-center w-full items-center flex justify-around h-44">
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage:
+        "url(https://images.unsplash.com/photo-1642516861669-27011fa2a1fb?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "100%",
+      backgroundPosition: "center",
+      opacity: 0.5, // Adjust the opacity as needed
+      zIndex: 0,
+    }}
+  ></div>
+  <div className="relative z-10 font-malayalam">
+    ഗീതാഞ്ജലി നൃത്തവിദ്യാലയ൦
+  </div>
+</div>
     <div className="w-full h-fit flex justify-center bg-red-500 relative">
         <FlipWords words={words}/>
     </div>
     <div  className="mt-4">
         <div className="bg-black text-white text-2xl p-2">Meet the faculties</div>
-        <div className="grid grid-cols-1 lg:h-[800px] h-[400px]">
-            <div className="flex relative h-full">
-            <div
-      className="absolute object-cover w-1/2 h-full object-center"
-      style={{
-        backgroundImage: "linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 40%), url('/karateMaster.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    ></div>
-              <div className="bg-black w-1/2 z-10 absolute right-0 h-full flex-flex-col">
-              
-              <div className="h-full relative">
-    <div
-      className="absolute w-full h-full"
-      style={{
-        backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url('/karateMaster2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    ></div>
-    <div className="absolute bottom-0 w-full h-1/4 flex items-center justify-center bg-black text-white p-2" style={{
-        background: "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 80%)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}>
-      <div className="font-Oswald text-center lg:text-xl">
-        <h2 className="lg:text-7xl text-2xl">Rathnakaran M</h2>
-        <h2>7th dan {"(red & white)"}</h2>
-        <h2>Academy of asian fighting arts</h2>
-        <h2>Mavungal, Anandasram</h2>
-      </div>
-    </div>
-  </div>
+        <div className="grid grid-cols-2">
+            <div className="flex justify-center items-center w-full h-fit py-5">
+              <div className="w-72 h-96 border-8 border-yellow-400 shadow-2xl shadow-black">
+              <img src="/danceMaster.jpg" alt="" className="object-cover w-full h-full"/>
               </div>
+              
+            </div>
+            <div className="flex flex-col justify-center text-center text-xl font-malayalam">
+              <div>തമിഴ് യൂണിവേഴ്സിറ്റിയിൽ നിന്നും ഭരതനാട്യത്തിൽ ബിരുദവും കേരളനടണത്തിൽ ഡോ. ഗുരുഗോപിനാഥ് ട്രസ്റ്റിന്റെ കീഴിൽനിന്നും ഡിപ്ലോമയും പൂർത്തിയാക്കി. 10 വർഷമായി നൃത്ത പരിശീലകനായി തുടരുന്നു.</div>
+              <div>ഇപ്പോൾ പുല്ലൂർ സംസ്കൃതി, ചട്ടഞ്ചാൽ, ബെളൂർ (അട്ടേങ്ങാനം), എളേരിതട്ട് എന്നിവിടങ്ങളിൽ ഗീതാഞ്ചലി നൃതാവിദ്യാലയം എന്ന സ്ഥാപനം നടത്തിവരുന്നു. കൂടാതെ കേരളകലാക്ഷേത്രം മുന്നാട്, നാട്യകലാ നൃത്തവിദ്യാലയം പെരിയബസാർ, നാട്യകൈരളി പെരുമ്പള എന്നിവിടങ്ങളിലും പരിശീലനം നൽകി വരുന്നു.</div>
+              
             </div>
         </div>
+    </div>
+    
+    <div className="grid grid-cols-2">
+      
+      <div className="flex justify-center text-center flex-col text-xl font-malayalam px-1">
+        <div> 2019 മുതൽ പ്രതിബോധക എന്ന ഡാൻസ് ട്രൂപ്പിലൂടെ RLV ജയപ്രകാശ് നാരായണൻ സാറിന്റെ കീഴിൽ നിരവധി വേദികളിൽ സോളോ, ഗ്രൂപ്പ്‌ പെർഫോമൻസ് അവതരിപ്പിച്ചു വരുന്നു. </div>
+        <div> 2018 മുതൽ പുല്ലൂർ കണ്ണാങ്കോട്ട് കാവ് സംസ്കൃതിയിൽ നൃത്തപരിശീലനം ആരംഭിച്ചു. നിരവധി വിദ്യാർഥികൾ പരിശീലനം നേടി വരുന്നു. അരങ്ങേറ്റം കഴിഞ്ഞ വിദ്യാർഥികൾക്ക്‌ നിരവധി വേദികളിൽ പെർഫോമൻസ് ചെയ്യാനുള്ള അവസരവും ലഭിക്കുന്നുണ്ട്</div>
+      </div>
+
+      <div className="">
+      <div className="slider-container w-full h-96 shadow-2xl shadow-black">
+  <Slider {...settingsSideImages} className="w-full h-full">
+    <div className="w-full h-96 flex">
+      <img src={"/dance1.jpg"} className="object-cover w-full h-full"/>
+    </div>
+    <div className="w-full h-96 flex">
+      <img src={"/dance2.jpg"} className="object-cover w-full h-full"/>
+    </div>
+    <div className="w-full h-96 flex">
+      <img src={"/dance3.jpg"} className="object-cover w-full h-full"/>
+    </div>
+    <div className="w-full h-96 flex">
+      <img src={"/dance4.jpg"} className="object-cover w-full h-full"/>
+    </div>
+  </Slider>
+</div>
+      </div>
     </div>
     <div className="grid lg:grid-cols-3 grid-cols-1 gap-2 w-full h-fit bg-black mt-6 min-h-[600px]">
     <div className="h-full px-2">
@@ -191,7 +222,7 @@ const KarateContent = () => {
         </div>
     </div>
 
-    <div className="mt-16">
+    {/* <div className="mt-16">
         <div className="bg-black text-white text-2xl p-2">Recent Activities</div>
         <div className="slider-container bg-black">
       <Slider {...settingsImageSection}>
@@ -203,9 +234,9 @@ const KarateContent = () => {
         
       </Slider>
     </div>
-    </div>
+    </div> */}
     </>
   )
 }
 
-export default KarateContent
+export default DanceContent

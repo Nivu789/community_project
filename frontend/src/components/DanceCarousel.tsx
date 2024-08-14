@@ -16,7 +16,7 @@ const DanceCarousel = () => {
     ]
 
   return (
-    <Carousel images={images} singleButton={true} buttonText='Check it out'/>
+    <Carousel images={images} singleButton={true} buttonText='Check it out' to='/activities/dance'/>
   )
 }
 

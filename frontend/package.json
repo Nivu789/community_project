@@ -19,7 +19,7 @@
     "aws-sdk": "^2.1659.0",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.3.21",
+    "framer-motion": "^11.3.24",
     "framer-motion-carousel": "^2.0.4",
     "moment": "^2.30.1",
     "react": "^18.3.1",
