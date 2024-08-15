@@ -1,6 +1,8 @@
 import  { useCallback, useState } from 'react'
 import { RxAvatar } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
+import { FaPlus } from "react-icons/fa";
+import { useSideBarContext } from '../contexts/SideBarContextAdmin';
 
 
 const AdminHeader = () => {
@@ -12,10 +14,13 @@ const AdminHeader = () => {
     navigate('/admin/signin')
   },[])
 
+  const {openSideBar,setOpenSideBar} = useSideBarContext()
+
   return (
-    <div className='w-full bg-slate-600 h-14'>
-      <div className='flex justify-between items-center h-full px-12'>
-        <div className='text-2xl  text-white font-bold'>
+    <div className='w-full bg-slate-600 h-14 fixed top-0'>
+      <div className='flex justify-between items-center h-full px-6'>
+        <div className='text-2xl  text-white font-bold flex items-center gap-2'>
+          <div className='min-w-8 lg:hidden block'>{!openSideBar && <FaPlus onClick={()=>setOpenSideBar(!openSideBar)}/>}</div>
           Samskrithi
         </div>
           <div className=''>

@@ -12,13 +12,16 @@ interface eventType {
 
 export const useFetchEventsOfActivity = (activityName:string) =>{
     const [eventData,setEventData] = useState<eventType[] | []>([])
+    const [eventsLoading,setEventsLoading] = useState(true)
     try {
         useEffect(()=>{
+            setEventsLoading(true)
             axios.post(`${BASE_URL}/user/get-activity-events`,{activityName}) 
             .then((response)=>{
             if(response.data.success){
                 setEventData(response.data.eventData)
             }
+            setEventsLoading(false)
         })
         
         },[activityName])
@@ -27,5 +30,5 @@ export const useFetchEventsOfActivity = (activityName:string) =>{
         console.log(error)
     }
 
-    return {eventData}
+    return {eventData,eventsLoading}
 }

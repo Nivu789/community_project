@@ -29,6 +29,7 @@ import FarmersCommittee from './pages/committeePages/Committee'
 import CommitteeManagement from './pages/admin/CommitteeManagement'
 import Activity from './pages/member/Activity'
 import ActivityManagement from './pages/admin/ActivityManagement'
+import SideBarContextAdminProvider from './contexts/SideBarContextAdmin'
 
 
 
@@ -93,6 +94,7 @@ function App() {
                 <Route path='activity/:activityName' element={<Protector><ActivityManagement/></Protector>}></Route>
             </Route>
         </Route>
+        
           <Route path='/admin/signin' element={<IsAdminAuthenticated><Signin/></IsAdminAuthenticated>}></Route>
       </Routes>
     </div>

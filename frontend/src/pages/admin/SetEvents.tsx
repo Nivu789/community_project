@@ -94,17 +94,17 @@ type Item = {
       theme="light"
       />
     
-    <div className='h-screen text-white p-4 flex flex-col gap-2'>
-        <div className='text-4xl'>
+    <div className='h-screen text-white lg:p-4 flex flex-col gap-2 md:mt-14 mt-16'>
+        <div className='lg:text-4xl text-3xl pl-2'>
             Events
         </div>
-        <div className='overflow-auto scroll-m-0 h-3/4 flex flex-col p-3'>
+        <div className='overflow-auto scroll-m-0 h-3/4 flex flex-col md:p-3 p-6'>
             {events.map((item:Item)=>(
               <EventInfoCard data={item} onClick={handleRemoveEvent(item._id)}/>
             ))}
         </div>
         
-        <div className='mt-3'>
+        <div className='mt-1 flex w-full  max-sm:justify-center'>
             <Link to={'/admin/dashboard/host-event'}><button className='bg-green-600 p-3 rounded-lg'>Host an event</button></Link>
         </div>
     </div>

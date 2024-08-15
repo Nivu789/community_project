@@ -169,10 +169,10 @@ console.log(watch("activity"))
       <div className='text-white p-3 text-4xl'>
         Host event
       </div>
-      <div className='text-white text-4xl grid grid-cols-8'>
-        <div className='col-span-2'>
-          <div className='flex flex-col p-2'>
-            <form className="max-w-fit pl-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className='text-white text-4xl grid md:grid-cols-8 w-full grid-cols-1'>
+        <div className='md:col-span-2'>
+          <div className='flex flex-col'>
+            <form className="w-full px-6" onSubmit={handleSubmit(onSubmit)}>
               <div className="relative z-0 w-full mb-5 group">
                 <input type="text" {...register("title",{required:true})} name="title" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                 <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
@@ -229,7 +229,7 @@ console.log(watch("activity"))
 
               <div className="grid md:grid-cols-2 md:gap-6 mt-6 mb-2">
 
-                <div className='text-white text-sm w-fit p-1 flex items-center gap-2'>
+                <div className='text-white text-lg w-fit p-1 flex items-center gap-2'>
                 <label htmlFor='showInHome'>Show in home</label>
                 <input type="checkbox" id='showInHome' {...register("showInHome")}/>
                 </div>
@@ -241,7 +241,7 @@ console.log(watch("activity"))
             </form>
             
           </div>
-          <div className='p-2'>
+          <div className='py-12 px-6 text-lg'>
           <input type="file" accept="image/*" onChange={onSelectFile} />
           {imgSrc && <img src={imgSrc} alt="Selected" className="h-44 w-full mt-2" />}
           </div>
@@ -250,7 +250,7 @@ console.log(watch("activity"))
           </div>}
         </div>
 
-        <div className="h-[800px] overflow-auto col-span-6 px-5 bg-zinc-400">
+        <div className="h-[800px] overflow-auto md:col-span-6 px-5 bg-zinc-400">
           <Calendar
             localizer={localizer}
             events={events}
