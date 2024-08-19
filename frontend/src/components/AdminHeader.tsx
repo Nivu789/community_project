@@ -17,7 +17,7 @@ const AdminHeader = () => {
   const {openSideBar,setOpenSideBar} = useSideBarContext()
 
   return (
-    <div className='w-full bg-slate-600 h-14 fixed top-0'>
+    <div className='w-full bg-slate-600 h-14 fixed top-0 z-50'>
       <div className='flex justify-between items-center h-full px-6'>
         <div className='text-2xl  text-white font-bold flex items-center gap-2'>
           <div className='min-w-8 lg:hidden block'>{!openSideBar && <FaPlus onClick={()=>setOpenSideBar(!openSideBar)}/>}</div>

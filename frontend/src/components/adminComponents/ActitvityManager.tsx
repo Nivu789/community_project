@@ -81,11 +81,11 @@ const ActitvityManager = () => {
   }
 
   return (
-    <div>
-    <div className='p-4'>
+    <div className='h-screen mt-14 flex flex-col'>
+    
         <div className='text-4xl text-white'>Activity Manager - {activityName}</div>
-        <div className='text-2xl'>Image uploads</div>
-    <div className='w-full h-3/4 bg-orange-200 overflow-auto p-4 flex flex-wrap gap-y-32 gap-x-6'>
+        <div className='text-2xl text-white'>Image uploads</div>
+    <div className='w-full h-3/4 bg-slate-500 overflow-y-auto p-4 flex flex-wrap gap-y-2 gap-x-6 justify-center'>
     
     {loading && images.length==0 && <div role="status" className='w-full justify-center flex h-full items-center'>
     <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +106,7 @@ const ActitvityManager = () => {
     <div className='flex justify-start w-full p-3 bg-green-500 rounded-lg'>Upload more</div>
     <input type="file" multiple className='bg-red-500 w-fit' onChange={handleSelectedFiles}/>
     <button className='flex justify-start w-fit bg-orange-300 p-2 items-center gap-2' onClick={handleImageSubmit}>Confirm <GiConfirmed className='text-xl'/></button>
-    </div>
+    
     </div>
   )
 }

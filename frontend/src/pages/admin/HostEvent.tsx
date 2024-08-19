@@ -166,7 +166,7 @@ console.log(watch("activity"))
       draggable
       theme="light"
       />
-      <div className='text-white p-3 text-4xl'>
+      <div className='text-white p-3 text-4xl mt-16'>
         Host event
       </div>
       <div className='text-white text-4xl grid md:grid-cols-8 w-full grid-cols-1'>

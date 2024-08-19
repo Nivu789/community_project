@@ -30,7 +30,7 @@ const EventInfoCard = ({data,onClick}:EventCardProps) => {
 
         <div className='flex flex-col lg:border-r-2 justify-center'>
             <div className='lg:text-2xl text-xl underline flex'>
-                <div className="w-3/4">{data.title.length>18 ? data.title.slice(0,18)+"...":data.title}</div>
+                <div className="max-sm:w-[15rem]">{data.title.length>18 ? data.title.slice(0,18)+"...":data.title}</div>
                 <div className="md:hidden flex justify-around w-1/4 pt-1 text-2xl">
                     <Link to={`/admin/dashboard/edit-event/${data._id}`}><MdEdit className="text-orange-800"/></Link>
                     <MdDelete className="text-red-600" onClick={onClick}/>
@@ -54,7 +54,7 @@ const EventInfoCard = ({data,onClick}:EventCardProps) => {
         </div>
         
         <div className='flex gap-4 w-full'>
-            <div className='w-44 max-h-24 p-1 rounded-sm'>
+            <div className='w-32 max-h-24 p-1 rounded-sm'>
                 <img className="object-cover w-full h-full" src={data.img || ""} alt="" />
             </div>
             <div className='flex flex-col gap-2 w-1/2'>

@@ -84,7 +84,7 @@ const CommitteeManager = () => {
     <div className='p-3 text-white flex flex-col gap-4 h-screen'>
     <div className='text-4xl'>CommitteeManager - {committeeName}</div>
     <div className='text-2xl'>Image uploads</div>
-    <div className='w-full h-3/4 bg-orange-200 overflow-auto p-4 flex flex-wrap gap-y-32 gap-x-6'>
+    <div className='w-full h-3/4 bg-slate-500 overflow-auto p-4 flex flex-wrap lg:gap-y-32 gap-x-6 overflow-y-auto max-sm:justify-center'>
     
     {loading && images.length==0 && <div role="status" className='w-full justify-center flex h-full items-center'>
     <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,11 +1,12 @@
 import React, { ChangeEvent, ChangeEventHandler, FormEvent } from 'react'
 import GalleryFolderCard from '../../components/adminComponents/GalleryFolderCard'
-import { MdOutlineCloudUpload } from "react-icons/md";
-import { Link } from 'react-router-dom';
+
 import { useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../config/config';
 import { useListFilesInGallery } from '../../hooks/useListFilesInGallery';
+import { TiTick } from "react-icons/ti";
+import Pagination from '../../components/Pagination';
 
 const Gallery = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -55,23 +56,56 @@ const Gallery = () => {
     }
   }
 
+  const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(6)
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = list.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = (pageNumber:number) =>{
+      setCurrentPage(pageNumber)
+      console.log(currentPosts)
+  }
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+       setCurrentPage(currentPage - 1);
+    }
+ }; 
+
+ const nextPage = () => {
+  if (currentPage !== Math.ceil(list.length / postsPerPage)) {
+     setCurrentPage(currentPage + 1);
+  }
+
+}
+
+
   return (
     <>
       
-      <div className='grid grid-cols-4 w-full'>
+      <div className='grid lg:grid-cols-4 w-full mt-16 px-5 grid-cols-1'>
 
-
-        <div className='grid grid-cols-3 gap-6 w-full pt-4 col-span-3 ml-10 h-fit'>
-          {list && list.map((item)=>(
+        <div className='col-span-3'>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 w-full pt-4 col-span-3 h-3/4 overflow-y-auto'>
+          {loading || list.length==0 ? <div className='col-span-2 h-96 w-full'>Loading ...</div> : currentPosts && currentPosts.map((item)=>(
             <GalleryFolderCard folderName={item} dir='gallery'/>
           ))}
           
         </div>
 
-        <div className='col-span-1 bg-slate-900 p-2 flex flex-col gap-2 h-screen'>
+        <div className='mt-8'>
+          <Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={paginate} previousPage={previousPage} currentPage={currentPage} nextPage={nextPage}/>
+          </div>
 
-          <div>
-            <form className="max-w-sm mx-auto">
+        
+          </div>
+          
+        <div className='col-span-1 bg-slate-900 p-2 flex flex-col gap-2 lg:h-screen max-sm:mt-8 w-full mb-20'>
+
+          <div className='w-full'>
+            <form className="max-w-full">
               <label htmlFor="underline_select" className="sr-only">Underline select</label>
               <select onChange={handleSelection} id="underline_select" className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                 {loading ? (
@@ -105,11 +139,12 @@ const Gallery = () => {
             </div>
             <form className='mt-4' onSubmit={handleImageSubmit} encType="multipart/form-data">
               <input type="file" multiple name='photos' onChange={handleFileChange} />
-              <button type='submit'>Submit</button>
+              <button type='submit' className='bg-green-500 flex items-center mt-6 p-2'>Submit<TiTick /></button>
             </form>
           </div>
 
         </div>
+        
       </div>
     </>
   )

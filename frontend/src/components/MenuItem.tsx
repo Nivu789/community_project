@@ -51,7 +51,7 @@ const MenuItem = ({item,depthLevel,textColor}:any) => {
       
         return (
       <>
-      <div className='w-56'>
+      <div className='w-72'>
         <li className={`relative items-center border-x-2 font-bold ${textColor=="text-blue-300" ? textColor+" text-md hover:bg-black" : "text-white"} ${item.title=="JOIN US" ? `bg-${colors[colorIndex]}` : ''} bg-orange-800 w-full py-3 flex hover:bg-orange-600 px-2`} ref={menuRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           {item.submenu ? (
             <>
@@ -63,7 +63,7 @@ const MenuItem = ({item,depthLevel,textColor}:any) => {
               <DropDown submenus={item.submenu} dropdown={dropdown} depthLevel={depthLevel}/>
             </>
           ) : (
-            <Link to={item.url} className={`w-full flex items-center justify-center`}>{item.title}</Link>
+            <Link to={item.url} className={`w-full flex items-center justify-center text-center`}>{item.title}</Link>
           )}
         </li>
         </div>

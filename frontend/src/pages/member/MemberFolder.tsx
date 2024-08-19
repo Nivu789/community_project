@@ -9,7 +9,7 @@ import Pagination from '../../components/Pagination'
 
 const MemberFolder = () => {
     const {folderName} = useParams()
-    const [refetch,setRefetch] = useState(false)
+    const [refetch] = useState(false)
 
     const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "","user")
     
@@ -45,19 +45,19 @@ const MemberFolder = () => {
 
         :
         
-        <div className='grid lg:grid-cols-4 lg:gap-60 lg:w-3/4 pt-4 lg:ml-5 grid-cols-2 ml-2 min-h-72'>
+        <div className='grid lg:grid-cols-4 lg:gap-80 lg:w-3/4 pt-4 lg:ml-5 max-sm:grid-cols-1 ml-2 min-h-72 grid-cols-2'>
           <PhotoProvider>
         {currentPosts && currentPosts.map((item,index)=>(
           <>
           <PhotoView key={index} src={`https://samskruthibucket.s3.amazonaws.com/${item}`}>
-            <GalleryFolderCard dir='inFolder' imgSrc={`https://samskruthibucket.s3.amazonaws.com/${item}`} className='relative w-56 lg:w-72 h-40 flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
+            <GalleryFolderCard dir='inFolder' imgSrc={`https://samskruthibucket.s3.amazonaws.com/${item}`} className='mx-auto relative w-3/4 lg:w-72 h-40 flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
           </PhotoView>
             </>
         ))}
         </PhotoProvider>
     </div>
     }
-    <div>
+    <div className='max-sm:mt-36'>
       <Pagination postsPerPage={postsPerPage} totalPosts={list.length} currentPage={currentPage} paginate={paginate} previousPage={previousPage} nextPage={nextPage}/>
     </div>
     </Container>

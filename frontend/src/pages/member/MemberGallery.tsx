@@ -42,9 +42,9 @@ const MemberGallery = () => {
           <ImageLoading/>
         </div> 
         : 
-        <div className='grid lg:grid-cols-4 gap-4 w-full pt-4 lg:ml-10 h-fit grid-cols-2 px-3'>
+        <div className='grid lg:grid-cols-4 gap-y-3 w-full h-3/4 grid-cols-2 px-3 gap-x-3'>
         {currentPosts && currentPosts.map((item)=>(
-            <GalleryFolderCard folderName={item} dir='member-gallery' className='relative w-56 lg:w-72 h-full flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
+            <GalleryFolderCard folderName={item} dir='member-gallery' className='relative w-full lg:w-60 h-full flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
           ))}
         </div>
         }

@@ -4,6 +4,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useSideBarContext } from "../../contexts/SideBarContextAdmin";
 
 interface SideBarItem {
     title: string;
@@ -18,6 +19,7 @@ interface SideBarItem {
 
 const SideBarITem = ({item}:SideBarItemProps) => {
     const [open,setOpen] = useState(false)
+    const {setOpenSideBar} = useSideBarContext()
 
     return (
         <>
@@ -25,7 +27,7 @@ const SideBarITem = ({item}:SideBarItemProps) => {
             className='flex p-4 justify-between items-center bg-slate-800 text-white cursor-pointer pt-9'
             onClick={() => setOpen(!open)}
           >
-            <Link to={item.url ? item.url : "#"}><div className='flex items-center gap-2'>
+            <Link to={item.url ? item.url : "#"} onClick={()=>setOpenSideBar(false)}><div className='flex items-center gap-2'>
               <i className={`${item.icon}`}></i>
               <div className="text-xl">{item.title}</div>
             </div></Link>

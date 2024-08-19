@@ -20,10 +20,7 @@ export const menuItemsData = [
       title: 'EVENTS',
       url: '/events',
     },
-    {
-      title: 'CONTACT US',
-      url: '/contactus',
-    },
+    
     {
       title: 'SUB COMMITIES',
       submenu:[
