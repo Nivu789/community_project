@@ -3,6 +3,7 @@ import DropDown from './DropDown';
 import { useState } from 'react';
 import { useRef , useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaChevronDown } from "react-icons/fa";
 
 const MenuItem = ({item,depthLevel,textColor}:any) => {
     const [dropdown, setDropdown] = useState(false);
@@ -52,13 +53,13 @@ const MenuItem = ({item,depthLevel,textColor}:any) => {
         return (
       <>
       <div className='w-72'>
-        <li className={`relative items-center border-x-2 font-bold ${textColor=="text-blue-300" ? textColor+" text-md hover:bg-black" : "text-white"} ${item.title=="JOIN US" ? `bg-${colors[colorIndex]}` : ''} bg-orange-800 w-full py-3 flex hover:bg-orange-600 px-2`} ref={menuRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+        <li className={`relative items-center border-x-2 font-bold ${textColor=="text-blue-300" ? textColor+" text-md hover:bg-black" : "text-white"} ${item.title=="JOIN US" ? `bg-${colors[colorIndex]}` : ''} bg-orange-800 w-full py-2 flex hover:bg-orange-600`} ref={menuRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
           {item.submenu ? (
             <>
-              <button type="button" aria-haspopup="menu" className={`w-full cursor-pointer flex items-center justify-center`} aria-expanded={dropdown ? "true":"false"}
+              <button type="button" aria-haspopup="menu" className={`w-full gap-1 cursor-pointer flex items-center justify-center`} aria-expanded={dropdown ? "true":"false"}
       onClick={() => setDropdown((prev) => !prev)}>
                 {item.title}{' '}
-                {depthLevel > 0 ? <span>&raquo;</span> : <span>&#9930;</span>}
+                {depthLevel > 0 ? <span>&raquo;</span> : <FaChevronDown />}
               </button>
               <DropDown submenus={item.submenu} dropdown={dropdown} depthLevel={depthLevel}/>
             </>

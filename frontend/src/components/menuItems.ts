@@ -4,9 +4,18 @@ export const menuItemsData = [
       url: '/home',
     },
     {
-      title: 'ABOUT US',
-      url: '/aboutus',
-     
+      title: 'KNOW US',
+      url: '#',
+      submenu:[
+        {
+          title: 'CONTACT US',
+          url: '/contactus',
+        },
+        {
+          title: 'ABOUT US',
+          url: '/aboutus',
+        },
+      ]
     },
     {
       title: 'OUR ACTIVITIES',
@@ -43,6 +52,7 @@ export const menuItemsData = [
       ]
     },
     {
-      title:'JOIN US'
+      title:'JOIN US',
+      url:'/joinus'
     }
   ];

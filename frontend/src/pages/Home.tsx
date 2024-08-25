@@ -1,4 +1,4 @@
-import BottomSection from "../components/homeComponents/BottomSection"
+
 import Container from "../components/Container"
 import IntroSection from "../components/homeComponents/IntroSection"
 import MidSection from "../components/homeComponents/MidSection"

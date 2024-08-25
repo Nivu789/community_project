@@ -3,6 +3,8 @@ import USER from '../models/userModel';
 import jwt from 'jsonwebtoken'
 import EVENT from '../models/eventModel';
 import ANNOUNCEMENT from '../models/announcementModel';
+import {sendMessage,getTextMessageInput} from '../helpers/messageHelper'
+import twilio from 'twilio'
 
 
 export const memberLogin = async (req: Request, res: Response, next: NextFunction) => {
@@ -103,6 +105,27 @@ export const fetchEventsOfActivity = async(req: Request, res: Response, next: Ne
     } catch (error) {
         console.log(error)
         return res.json({message:"Something went wrong"})
+    }
+}
+
+export const sendWhatsappMessage = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        var data = getTextMessageInput(process.env.RECIPIENT_WAID || "", 'Welcome to the Movie Ticket Demo App for Node.js!');
+  
+  sendMessage(data)
+    .then(function (response) {
+      res.sendStatus(200);
+      console.log(response.statusText)
+      return;
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log(error.response.data);
+      res.sendStatus(500);
+      return;
+    });
+    } catch (error) {
+        console.log(error)
     }
 }
 

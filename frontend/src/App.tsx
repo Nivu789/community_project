@@ -30,6 +30,7 @@ import CommitteeManagement from './pages/admin/CommitteeManagement'
 import Activity from './pages/member/Activity'
 import ActivityManagement from './pages/admin/ActivityManagement'
 import SideBarContextAdminProvider from './contexts/SideBarContextAdmin'
+import JoinUs from './pages/JoinUs'
 
 
 
@@ -80,6 +81,7 @@ function App() {
             <Route path='test' element={<Test/>}></Route>
             <Route path='contactus' element={<ContactUs/>}></Route>
             <Route path='committee/:committeeName' element={<FarmersCommittee/>}></Route>
+            <Route path='joinus' element={<JoinUs/>}></Route>
         </Route>
         <Route path='/admin' element={<AdminLayout/>}>
             <Route path='dashboard' element={<Protector><Dashboard/></Protector>}>
