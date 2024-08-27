@@ -30,5 +30,7 @@ export const useFetchEventsOfActivity = (activityName:string) =>{
         console.log(error)
     }
 
+    console.log(eventData)
+
     return {eventData,eventsLoading}
 }

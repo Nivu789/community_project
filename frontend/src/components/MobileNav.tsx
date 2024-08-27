@@ -33,7 +33,7 @@ const MobileNav = () => {
   return (
     <nav className="w-full fixed top-0 z-30">
       <button ref={menuRef}
-        className="mobile-nav__menu-button bg-orange-500 py-2 px-2 w-full"
+        className="mobile-nav__menu-button bg-white py-2 px-2 w-full shadow-xl"
         type="button"
         onClick={(event) => {
             event.stopPropagation();

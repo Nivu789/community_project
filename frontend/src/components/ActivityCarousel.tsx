@@ -18,7 +18,6 @@ export const ActivityCarousel = ({images,interval=6000,className}:CarouselProp) 
     }
 
     const [scale, setScale] = useState(1);
-    const [translateX, setTranslateX] = useState(0);
 
     useEffect(()=>{
         const activeInterval = setInterval(() => {
@@ -48,7 +47,7 @@ export const ActivityCarousel = ({images,interval=6000,className}:CarouselProp) 
   return (
         <>
         <div className="relative flex w-full flex-col bg-black h-full justify-center">
-                <motion.div className="absolute z-10 ml-32 mt-72 text-white text-4xl font-bold  w-[500px]" animate={{scale:1.2}} transition={{duration:6,repeat: Infinity, repeatType: "reverse"}}>{images[activeIndex].text}</motion.div>
+                <motion.div className="absolute z-10 lg:ml-32 ml-14 mt-72 text-white lg:text-4xl text-md font-bold  lg:w-[500px] w-44" animate={{scale:1.2}} transition={{duration:6,repeat: Infinity, repeatType: "reverse"}}>{images[activeIndex].text}</motion.div>
                 <img src={images[activeIndex].location} className={className?className:"w-full h-full lg:object-cover object-center"} 
                     style={{transition:"transform 6s ease-out",transform:`scale(${scale})`,opacity:.7}}
                 ></img>
