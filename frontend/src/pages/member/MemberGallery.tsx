@@ -44,6 +44,7 @@ const MemberGallery = () => {
         : 
         <div className='grid lg:grid-cols-4 gap-y-3 w-full h-3/4 grid-cols-2 px-3 gap-x-3'>
         {currentPosts && currentPosts.map((item)=>(
+          
             <GalleryFolderCard folderName={item} dir='member-gallery' className='relative w-full lg:w-60 h-full flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4'/>
           ))}
         </div>

@@ -58,7 +58,7 @@ export const mobileMenuItems = [
             },
             {
                 title:"Spoken English",
-                url:`/admin/dashboard/activity/${'spoken english'}`
+                url:`/admin/dashboard/activity/${'spokenenglish'}`
             }
         ]
     }

@@ -13,6 +13,7 @@ const Gallery = () => {
   const [folderName, setFolderName] = useState("")
   const [isDisabled,setIsDisabled] = useState(false)
   const [refetch,setRefetch] = useState(false)
+  const [createdDate,setCreatedDate] = useState("")
 
   const { list, loading } = useListFilesInGallery(refetch,'')
 
@@ -29,6 +30,7 @@ const Gallery = () => {
 
     const formData = new FormData();
     formData.append('folderName', folderName);
+    formData.append('createdDate',createdDate)
     for (let i = 0; i < selectedFiles.length; i++) {
       formData.append('photos', selectedFiles[i]);
     }
@@ -137,8 +139,9 @@ const Gallery = () => {
             <div className='text-white text-xl'>
               Select images
             </div>
-            <form className='mt-4' onSubmit={handleImageSubmit} encType="multipart/form-data">
+            <form className='mt-4 flex flex-col gap-2' onSubmit={handleImageSubmit} encType="multipart/form-data">
               <input type="file" multiple name='photos' onChange={handleFileChange} />
+              <input disabled={isDisabled} type="date" value={createdDate} onChange={(e)=>setCreatedDate(e.target.value)}/>
               <button type='submit' className='bg-green-500 flex items-center mt-6 p-2'>Submit<TiTick /></button>
             </form>
           </div>

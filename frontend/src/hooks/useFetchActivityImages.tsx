@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { BASE_URL } from "../config/config"
 
-export const useFetchActivityImages = (prefix:string,refetch:boolean,activityName?:string) =>{
+export const useFetchActivityImages = (prefix:string,refetch?:boolean,activityName?:string) =>{
     console.log("hrere")
     const [images,setImages] = useState([])
     const [loading,setLoading] = useState(true)

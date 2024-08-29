@@ -1,6 +1,6 @@
 import express from 'express'
 import { adminAuth } from '../middlewares/adminAuth'
-import { deleteAnnouncement, editAnnouncement, editEventInfo, getAnnouncements, getEventInfo, getEvents, postAnnouncement, postEvent, removeEvent } from '../controllers/adminController'
+import { deleteAnnouncement, editAnnouncement, editEventInfo, getAnnouncements, getEventInfo, getEvents, getGalleryFolders, postAnnouncement, postEvent, removeEvent } from '../controllers/adminController'
 import { s3Upload } from '../middlewares/s3Upload'
 import { NextFunction, Request, Response } from "express";
 const { S3Client } = require('@aws-sdk/client-s3')
@@ -9,6 +9,7 @@ import multerS3 from 'multer-s3'
 import { listFilesInS3 } from '../middlewares/listFilesInS3';
 import { fileUploadS3 } from '../middlewares/fileUploadS3';
 import { deleteFileS3 } from '../middlewares/deleteFileS3';
+import GALLERY from '../models/galleryModel';
 
 
 
@@ -52,8 +53,14 @@ const upload = multer({
     })
   })
 
-  adminRouter.post('/gallery-upload', upload.array('photos', 3), function(req:Request, res:Response, next:NextFunction) {
+  adminRouter.post('/gallery-upload', upload.array('photos', 3), async function(req:Request, res:Response, next:NextFunction) {
     console.log(req.body)
+    if(req.body.createdDate){
+      await GALLERY.create({
+        folderName:req.body.folderName,
+        dateCreated:req.body.createdDate
+      })
+    }
     if(req.files){
         res.send('Successfully uploaded ' + (req.files as Express.Multer.File[]).length + ' files!');
     }else{
@@ -73,6 +80,8 @@ const upload = multer({
   adminRouter.post('/delete-committee-image',deleteFileS3)
 
   adminRouter.get('/get-announcements',getAnnouncements)
+
+  adminRouter.get('/get-gallery-folders',getGalleryFolders)
 
 
 

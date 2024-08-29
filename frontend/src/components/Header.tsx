@@ -52,7 +52,7 @@ const Header = () => {
         <MobileNav/>
       </div>
     </div>
-    <div className='bg-orange-700'>
+    <div className='bg-orange-700 border-2'>
     <Marquee className='overflow-y-hidden lg:h-24 h-36' direction='right' speed={100}><div className='text-5xl  text-white font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div></Marquee>
     <Marquee className='overflow-y-hidden h-14' speed={100}><div className='text-5xl  text-white font-malayalam font-semibold'>SAMSKRITHI PULLUR</div></Marquee>
     </div>

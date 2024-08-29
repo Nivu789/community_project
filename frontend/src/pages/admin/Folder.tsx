@@ -8,7 +8,7 @@ const Folder = () => {
     const {folderName} = useParams()
     const [refetch,setRefetch] = useState(false)
 
-    const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "")
+    const {list,loading} = useListFilesInGallery(refetch,folderName+"/" || "","",true)
     console.log(list)
 
     const [currentPage, setCurrentPage] = useState(1);

@@ -47,7 +47,7 @@ export const ActivityCarousel = ({images,interval=6000,className}:CarouselProp) 
   return (
         <>
         <div className="relative flex w-full flex-col bg-black h-full justify-center">
-                <motion.div className="absolute z-10 lg:ml-32 ml-14 mt-72 text-white lg:text-4xl text-md font-bold  lg:w-[500px] w-44" animate={{scale:1.2}} transition={{duration:6,repeat: Infinity, repeatType: "reverse"}}>{images[activeIndex].text}</motion.div>
+                <motion.div className="absolute z-10 lg:ml-32 ml-14 mt-44 text-white lg:text-4xl text-md font-bold  lg:w-[500px] w-44" animate={{scale:1.2}} transition={{duration:6,repeat: Infinity, repeatType: "reverse"}}>{images[activeIndex].text}</motion.div>
                 <img src={images[activeIndex].location} className={className?className:"w-full h-full lg:object-cover object-center"} 
                     style={{transition:"transform 6s ease-out",transform:`scale(${scale})`,opacity:.7}}
                 ></img>

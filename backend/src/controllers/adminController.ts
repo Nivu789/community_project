@@ -3,6 +3,7 @@ import { convert } from "../helpers/formatDataAndTime";
 import EVENT from "../models/eventModel";
 import moment from 'moment-timezone';
 import ANNOUNCEMENT from "../models/announcementModel";
+import GALLERY from "../models/galleryModel";
 
 export const postEvent = async(req:Request,res:Response,next:NextFunction) =>{
     try {
@@ -171,6 +172,17 @@ export const deleteAnnouncement = async(req:Request,res:Response,next:NextFuncti
         }else{
             res.json({success:false})
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getGalleryFolders = async(req:Request,res:Response,next:NextFunction) =>{
+    try {
+        const folders = await GALLERY.find({},{folderName:1,_id:0}).sort({dateCreated:-1})
+        const folderNames = folders.map((item)=>item.folderName)
+        res.json({folderNames})
     } catch (error) {
         console.log(error)
     }
