@@ -95,7 +95,7 @@ const CommitteeManager = () => {
 </div>}
     {!loading && images && images.length > 0 && images.map((image)=>(
         <div className='w-80 h-60 flex relative'>
-        <img src={`https://samskruthibucket.s3.amazonaws.com/${image}`} alt="" className='z-0 object-cover w-full h-full'/>
+        <img src={`https://samskrithibucket.s3.amazonaws.com/${image}`} alt="" className='z-0 object-cover w-full h-full'/>
         <IoIosCloseCircle className='absolute top-2 right-2 z-10 text-red-500 text-4xl cursor-pointer' onClick={()=>handleDeleteFile(image)}/>
     </div>
     ))}

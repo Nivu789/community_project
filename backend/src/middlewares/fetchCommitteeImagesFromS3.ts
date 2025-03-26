@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import AWS from 'aws-sdk'
 
 const s3 = new AWS.S3({
-    accessKeyId: "AKIA47CR3SDNCC45LOEX",
-    secretAccessKey: "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",
+    accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
+    secretAccessKey: "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",
     region: 'us-east-1',
     
 });
@@ -14,7 +14,7 @@ export const fetchCommitteeImagesFromS3 = (req:Request,res:Response,next:NextFun
         console.log("Working")
         return new Promise ((resolve, reject) => {
             const s3params = {
-              Bucket: 'samskruthibucket',
+              Bucket: 'samskrithibucket',
               MaxKeys: 20,
               Delimiter: '/',
               Prefix: 'committees/'+req.body.prefix

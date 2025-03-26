@@ -185,7 +185,7 @@ const SpokenEnglishContent = () => {
                     <Slider {...settingsImageSection} className="h-96">
 
                         {images && images.length > 0 && images.map((image, index) => (
-                            <div key={index} className="h-96 w-full border-2 border-white"><img src={`https://samskruthibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center" /></div>
+                            <div key={index} className="h-96 w-full border-2 border-white"><img src={`https://samskrithibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center" /></div>
 
                         ))}
 

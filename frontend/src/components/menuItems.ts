@@ -1,7 +1,7 @@
 export const menuItemsData = [
     {
       title: 'HOME',
-      url: '/home',
+      url: '/',
     },
     {
       title: 'KNOW US',
@@ -35,24 +35,24 @@ export const menuItemsData = [
       submenu:[
         {
           title:'കർഷക കൂട്ടായ്‌മ',
-          url:'committee/farmers-committee'
+          url:'#'
         },
         {
           title:'വിമുക്ത ഭട കൂട്ടായ്‌മ',
-          url:'committee/army-committee',
+          url:'#',
         },
         {
           title:'വനിത കൂട്ടായ്‌മ',
-          url:'committee/wemen-committee'
+          url:'#'
         },
         {
           title:'ബാലവേദി',
-          url:'committee/children-committee'
+          url:'#'
         },
       ]
     },
     {
       title:'JOIN US',
-      url:'/joinus'
+      url:'#'
     }
   ];

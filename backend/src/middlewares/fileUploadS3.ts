@@ -6,8 +6,8 @@ import multerS3 from 'multer-s3'
 const s3 = new S3Client({
     region: 'us-east-1',
     credentials: {
-        accessKeyId: "AKIA47CR3SDNCC45LOEX",
-        secretAccessKey: "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"
+        accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
+        secretAccessKey: "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"
     }
 })
 
@@ -15,7 +15,7 @@ const s3 = new S3Client({
 const fileUpload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'samskruthibucket',
+        bucket: 'samskrithibucket',
         metadata: function (req: Request, file, cb) {
             cb(null, Object.assign({}, req.body));
         },

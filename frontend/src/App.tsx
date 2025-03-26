@@ -68,7 +68,7 @@ function App() {
     <div> 
       <Routes>
         <Route path='/' element={<Wrapper/>}>
-            <Route index path='home' element={<Home/>}></Route>
+            <Route index path='/' element={<Home/>}></Route>
             <Route path='activities' element={<Activities/>}></Route>
             <Route path='activities/:activityName' element={<Activity/>}></Route>
             <Route path='events' element={<Events/>}></Route>

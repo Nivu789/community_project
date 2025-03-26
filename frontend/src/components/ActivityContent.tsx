@@ -211,8 +211,7 @@ const KarateContent = () => {
       <Slider {...settingsImageSection}>
         
           {images && images.length>0 && images.map((image,index)=>(
-            <div key={index} className="h-full w-full border-2 border-black"><img src={`https://samskruthibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center"/></div>
-            
+            <div key={index} className="h-full w-full border-2 border-black"><img src={`https://samskrithibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center"/></div>
           ))}
         
       </Slider>

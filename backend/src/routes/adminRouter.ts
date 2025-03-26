@@ -1,6 +1,6 @@
 import express from 'express'
 import { adminAuth } from '../middlewares/adminAuth'
-import { deleteAnnouncement, editAnnouncement, editEventInfo, getAnnouncements, getEventInfo, getEvents, getGalleryFolders, postAnnouncement, postEvent, removeEvent } from '../controllers/adminController'
+import { deleteAnnouncement, deleteGalleryFolder, editAnnouncement, editEventInfo, getAnnouncements, getEventInfo, getEvents, getGalleryFolders, postAnnouncement, postEvent, removeEvent } from '../controllers/adminController'
 import { s3Upload } from '../middlewares/s3Upload'
 import { NextFunction, Request, Response } from "express";
 const { S3Client } = require('@aws-sdk/client-s3')
@@ -32,20 +32,20 @@ adminRouter.post('/gallery-folders',adminAuth,listFilesInS3)
 const s3 = new S3Client({
     region: 'us-east-1',
     credentials: {
-        accessKeyId: "AKIA47CR3SDNCC45LOEX",
-        secretAccessKey: "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"
+        accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
+        secretAccessKey: "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"
     }
 })
 
 const upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'samskruthibucket',
+      bucket: 'samskrithibucket',
       metadata: function (req:Request, file, cb) {
         cb(null, Object.assign({}, req.body));
       },
       key: function (req:Request,file:Express.Multer.File, cb:any) {
-        console.log(req)
+        console.log("Here",req)
         const folderName = req.body.folderName;
         const rootfolder = req.body.rootFolder
         cb(null, `${rootfolder?rootfolder:'gallery'}/${folderName}/${Date.now().toString()}_${file.originalname}`);
@@ -53,7 +53,7 @@ const upload = multer({
     })
   })
 
-  adminRouter.post('/gallery-upload', upload.array('photos', 3), async function(req:Request, res:Response, next:NextFunction) {
+  adminRouter.post('/gallery-upload', upload.array('photos'), async function(req:Request, res:Response, next:NextFunction) {
     console.log(req.body)
     if(req.body.createdDate){
       await GALLERY.create({
@@ -82,6 +82,8 @@ const upload = multer({
   adminRouter.get('/get-announcements',getAnnouncements)
 
   adminRouter.get('/get-gallery-folders',getGalleryFolders)
+
+  adminRouter.delete('/delete-folder',deleteGalleryFolder)
 
 
 

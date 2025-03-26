@@ -8,7 +8,16 @@ body,
     overflow-x: hidden; 
 }
 
-
+.my-slider-progress {
+    background: #ccc;
+  }
+  
+  .my-slider-progress-bar {
+    background: brown;
+    height: 2px;
+    transition: width 400ms ease;
+    width: 0;
+  }
 
 
 

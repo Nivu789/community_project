@@ -198,7 +198,7 @@ responsive: [
           viewport={{ once: true }}
           variants={cardVariants} className='lg:text-5xl text-2xl font-Oswald ml-24 max-sm:mt-12'>Ready to step up your game?</motion.div>
             <div className='font-Oswald lg:text-2xl ml-24 max-sm:w-1/2 max-sm:text-center'>Join us on the court and smash your way to fun!</div>
-            <a href="https://samskruthibucket.s3.amazonaws.com/SAMSKRITHI+BADMINTON+CLUB.pdf" className='cursor-pointer z-10' target='_blank'><button className='cursor-pointer bg-red-600 p-3 rounded-full mt-2 max-sm:ml-24 max-sm:text-sm'>Get the membership form</button></a>
+            <a href="https://samskrithibucket.s3.amazonaws.com/SAMSKRITHI+BADMINTON+CLUB.pdf" className='cursor-pointer z-10' target='_blank'><button className='cursor-pointer bg-red-600 p-3 rounded-full mt-2 max-sm:ml-24 max-sm:text-sm'>Get the membership form</button></a>
        </div>
 
     </div>
@@ -209,7 +209,7 @@ responsive: [
       <Slider {...settingsImageSection} className="h-96">
         
           {images && images.length>0 && images.map((image,index)=>(
-            <div key={index} className="h-96 w-full border-2 border-white"><img src={`https://samskruthibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center"/></div>
+            <div key={index} className="h-96 w-full border-2 border-white"><img src={`https://samskrithibucket.s3.amazonaws.com/${image}`} alt="" className="h-full w-full object-cover object-center"/></div>
             
           ))}
         

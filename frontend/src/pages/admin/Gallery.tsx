@@ -58,6 +58,8 @@ const Gallery = () => {
     }
   }
 
+  
+
   const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
 
@@ -69,6 +71,7 @@ const Gallery = () => {
       setCurrentPage(pageNumber)
       console.log(currentPosts)
   }
+
 
   const previousPage = () => {
     if (currentPage !== 1) {
@@ -92,7 +95,7 @@ const Gallery = () => {
         <div className='col-span-3'>
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 w-full pt-4 col-span-3 h-3/4 overflow-y-auto'>
           {loading || list.length==0 ? <div className='col-span-2 h-96 w-full'>Loading ...</div> : currentPosts && currentPosts.map((item)=>(
-            <GalleryFolderCard folderName={item} dir='gallery'/>
+            <GalleryFolderCard folderName={item} dir='gallery' setRefetch={setRefetch}/>
           ))}
           
         </div>

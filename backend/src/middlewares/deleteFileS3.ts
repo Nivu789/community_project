@@ -3,8 +3,8 @@ import AWS, { RDS } from 'aws-sdk'
 import ANNOUNCEMENT from "../models/announcementModel";
 
 const s3 = new AWS.S3({
-    accessKeyId: "AKIA47CR3SDNCC45LOEX",
-    secretAccessKey: "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",
+    accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
+    secretAccessKey: "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",
     region: 'us-east-1',
     
 });
@@ -16,7 +16,7 @@ export const deleteFileS3 = (req:Request,res:Response,next:NextFunction) =>{
         if(req.body.filePath){
             const filePath = req.body.filePath.slice(52,req.body.filePath.length).replace(/%20/g, ' ')
         console.log(filePath)
-        s3.deleteObject({Bucket:"samskruthibucket",Key:filePath}, async function(err, data) {
+        s3.deleteObject({Bucket:"samskrithibucket",Key:filePath}, async function(err, data) {
             if (err){ 
                 console.log(err, err.stack);
             }
@@ -31,13 +31,28 @@ export const deleteFileS3 = (req:Request,res:Response,next:NextFunction) =>{
 
         }else if(req.body.committeeFile){
             console.log(req.body.committeeFile)
-            s3.deleteObject({Bucket:"samskruthibucket",Key:req.body.committeeFile}, async function(err, data) {
+            s3.deleteObject({Bucket:"samskrithibucket",Key:req.body.committeeFile}, async function(err, data) {
             if (err){ 
                 console.log(err, err.stack);
             }else{
                 return res.json({success:true})
             }
         })
+        }else if(req.body.data.imgPath){
+            console.log(req.body.data.imgPath)
+            const filePath = req.body.data.imgPath.slice(42,req.body.data.imgPath.length).replace(/%20/g, ' ')
+        console.log("PATHHHHH",filePath)
+        s3.deleteObject({Bucket:"samskrithibucket",Key:filePath}, async function(err, data) {
+            if (err){ 
+                console.log(err, err.stack);
+                return res.json({success:false,message:"Deleting image failed"})
+            }
+              // error
+            else{
+                return res.json({success:true,message:"Successfully deleted image"})
+            }                 // deleted
+          }); 
+
         }
         
         else{

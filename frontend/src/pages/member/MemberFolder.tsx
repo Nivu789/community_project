@@ -45,15 +45,15 @@ const MemberFolder = () => {
 
           :
 
-          <div className='grid lg:grid-cols-4 lg:gap-80 lg:w-3/4 pt-4 lg:ml-5 max-sm:grid-cols-1 ml-2 min-h-72 grid-cols-2'>
+          <div className='grid lg:grid-cols-4 lg:gap-y-3 lg:w-full pt-4 lg:mx-auto max-sm:grid-cols-1 ml-2 lg:h-full grid-cols-2'>
             <PhotoProvider>
-              {currentPosts && currentPosts.map((item, index) => (
+              {currentPosts && currentPosts.map((item) => (
                 <>
 
-                    <div className="mx-auto relative w-3/4 lg:w-72 h-40 flex flex-col text-white gap-2 p-1 text-center bg-black rounded-lg mt-4">
+                    <div className="mx-auto relative lg:w-64 lg:h-64 flex flex-col text-white gap-1 p-1 text-center bg-black rounded-lg mt-4 md:w-52">
                         <div className='w-full h-full'>
-                          <PhotoView key={`https://samskruthibucket.s3.amazonaws.com/${item}`} src={`https://samskruthibucket.s3.amazonaws.com/${item}`}>
-                            <img className="object-cover object-center w-full h-full bg-white" src={`https://samskruthibucket.s3.amazonaws.com/${item}`} />
+                          <PhotoView key={`https://samskrithibucket.s3.amazonaws.com/${item}`} src={`https://samskrithibucket.s3.amazonaws.com/${item}`}>
+                            <img className="object-cover object-center w-full h-full bg-white" src={`https://samskrithibucket.s3.amazonaws.com/${item}`} />
                           </PhotoView>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ const MemberFolder = () => {
             </PhotoProvider>
           </div>
       }
-      <div className='max-sm:mt-36'>
+      <div className='max-sm:mt-36 sticky mt-36'>
         <Pagination postsPerPage={postsPerPage} totalPosts={list.length} currentPage={currentPage} paginate={paginate} previousPage={previousPage} nextPage={nextPage} />
       </div>
     </Container>

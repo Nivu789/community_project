@@ -39,11 +39,11 @@ const EventCard = ({data}:EventProps) => {
         </div>
         
         <div className='flex gap-4'>
-            <div className='w-44 h-44 relative'>
+            <div className='lg:w-44 lg:h-44 relative'>
                 <img className="object-cover h-full w-full" src={data.img} alt="" />
             </div>
             <div className='flex flex-col gap-2'>
-                <div className='lg:text-4xl font-bold text-2xl'>{data.title}</div>
+                <div className='lg:text-3xl font-bold text-xxl'>{data.title}</div>
                 <div className='text-xl hidden lg:block'>{data.desc.length > 50 ? data.desc.slice(0,30)+"...":data.desc}</div>
                 <div className='text-xl lg:hidden'>{data.desc.length > 50 ? data.desc.slice(0,30)+"...":data.desc}</div>
             </div>

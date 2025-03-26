@@ -102,7 +102,7 @@ const CommiteeContent = () => {
                         <Slider {...settings} className="h-80">
                             {images && images.map((image)=>(
                                 <div className="h-full bg-red-600">
-                                <img src={`https://samskruthibucket.s3.amazonaws.com/${image}`} alt="" className="object-cover w-full h-80 object-center"/>
+                                <img src={`https://samskrithibucket.s3.amazonaws.com/${image}`} alt="" className="object-cover w-full h-80 object-center"/>
                                 </div>
                             ))}
                         </Slider>

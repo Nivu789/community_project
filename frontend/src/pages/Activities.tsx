@@ -18,14 +18,14 @@ const Activities = () => {
     content: <ShuttleCarousel/>,
     className: "h-full col-span-1",
     thumbnail: "https://the.ismaili/sites/default/files/styles/carousel_banner/public/ys_11.jpg?itok=YrZQ5lHq",
-    cardText:"shuttle"
+    cardText:"Shuttle"
     },
     {
       id: 5,
     content: <DanceCarousel/>,
-    className: "h-1/2",
+    className: "h-full",
     thumbnail: "https://artiumacademy.mo.cloudinary.net/v1n/updated-Chitra-1-min.webp",
-    cardText:"music",
+    cardText:"Music Class",
     textMargin:380
     },
   ]
@@ -36,38 +36,32 @@ const Activities = () => {
       content: <KarateCarouselTest/>,
       className: "h-full w-full",
       thumbnail: "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2021/07/Karate-Olympics-Feature.jpg",
-      cardText:"karate"
+      cardText:"Karate Class"
       },
       {
         id: 3,
       content: <DanceCarousel/>,
       className: "h-full",
       thumbnail: "https://www.aluxurytravelblog.com/wp-content/uploads/2022/07/Odissi.jpg",
-      cardText:"Dance"
+      cardText:"Dance Class"
       },
-      {
-        id: 4,
-      content: <KarateCarouselTest/>,
-      className: "h-full w-full",
-      thumbnail: "https://onlineaccentspokenenglish.com/wp-content/uploads/2018/09/online-accent-spoken-english-classes-bangalore-institute.jpg",
-      cardText:"spoken english"
-      },
+
   ]
 
 
 
   
   return (
-    <Container>
+    // <Container>
     <div className="grid lg:grid-cols-2 p-2 bg-orange-100">
         <div className="">
-            <PartOneTest cards={Card1}/>
+            <PartTwoTest cards={Card1}/>
         </div>
         <div className="">
             <PartTwoTest cards={Card2}/>
         </div>
     </div>
-    </Container>
+    // {/* </Container> */}
   )
 }
 

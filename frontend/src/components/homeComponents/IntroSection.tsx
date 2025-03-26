@@ -79,17 +79,17 @@ const IntroSection = () => {
 
       return (
         <motion.div
-          className='grid grid-cols-1 lg:grid-cols-3 lg:h-[700px] gap-4 border-t-2 lg:mt-6'
+          className='grid grid-cols-1 lg:grid-cols-3  gap-4 border-t-2 lg:mt-6 bg-orange-700 h-full'
           initial='offscreen'
           whileInView='onscreen'
           viewport={{ once: true }}
           variants={cardVariants}
         >
-          <div className='order-2 lg:order-1 flex flex-col gap-1 lg:pr-6'>
+          <div className='order-2 lg:order-1 flex flex-col gap-1 lg:pr-6 h-full'>
             <div className='text-xl'>Upcoming Events</div>
             <span className='w-full bg-orange-800 block'>&nbsp;</span>
-            <div className='bg-slate-500 h-[400px] lg:h-[650px]'>
-              <Carousel autoPlay={true} interval={4000} loop={true}>
+            <div className='bg-slate-500 h-full'>
+              <Carousel autoPlay={true} interval={4000} loop={true} renderDots={()=>null}>
                 {images &&
                   images.length > 0 &&
                   images.map((item, i) => (
@@ -110,11 +110,11 @@ const IntroSection = () => {
             </div>
           </div>
     
-          <div className='order-1 lg:order-2 bg-orange-100 text-xl flex flex-col justify-around mt-8'>
+          <div className='order-1 lg:order-2 bg-orange-100 text-xl flex flex-col justify-around mt-8 h-[500px]'>
             <div className='flex justify-center'>
               <img src='./logo.png' alt='' className='h-40 w-40 brightness-150' />
             </div>
-            <CustomCarousel
+            <CustomCarousel to=''
               images={imagesSet}
               interval={6000}
               className='w-full h-full object-cover object-center'

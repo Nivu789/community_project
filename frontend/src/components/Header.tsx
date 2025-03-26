@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-    <Container>
+    {/* <Container> */}
       {/* <div className='flex flex-col'>
       <div className='lg:flex  justify-center gap-x-11 p-3 rounded-md  hidden font-bold bg-blue-700 text-white border-yellow-500 border-4'>
         <NavLink to={'/home'} className={"text-black bg-white p-2 rounded-full px-6"}>HOME</NavLink>
@@ -56,7 +56,7 @@ const Header = () => {
     <Marquee className='overflow-y-hidden lg:h-24 h-36' direction='right' speed={100}><div className='text-5xl  text-white font-malayalam font-semibold'>സംസ്‌കൃതി പുല്ലൂർ</div></Marquee>
     <Marquee className='overflow-y-hidden h-14' speed={100}><div className='text-5xl  text-white font-malayalam font-semibold'>SAMSKRITHI PULLUR</div></Marquee>
     </div>
-    </Container>
+    {/* </Container> */}
     
     {/* <div className='w-full bg-blue-300 lg:hidden h-10'>
     <div className='bg-blue-700 w-fit block h-full p-3'>

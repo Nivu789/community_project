@@ -8,12 +8,12 @@ const mapContainerStyle = {
   height: '100%',
 };
 const center = {
-  lat: 7.2905715, // default latitude
-  lng: 80.6337262, // default longitude
+  lat: 12.354771798392308,// default latitude
+  lng: 75.09777343380834, // default longitude
 };
 
 const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCpCz0JvKaEh3cy8ZjdaBESJLoAkiBZJO0',
+    googleMapsApiKey: 'AIzaSyDWIa-8lu1_f9OygTJwlaPwZ1SqzbydF7k',
     libraries,
   });
 
@@ -29,7 +29,7 @@ const { isLoaded, loadError } = useLoadScript({
     <div className='h-full'>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={18}
         center={center}
       >
         <Marker position={center} />

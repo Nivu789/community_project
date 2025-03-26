@@ -40,13 +40,13 @@ export const PartTwoTest = ({ cards }: { cards: Card[] }) => {
               selected?.id === card.id
                 ? "rounded-lg cursor-pointer absolute inset-0 h-fit w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
-                ? "z-40 bg-white rounded-xl h-full w-full"
+                ? " bg-white rounded-xl h-full w-full"
                 : "bg-white rounded-xl h-full w-full"
             )}
             layoutId={`card-${card.id}`}
           >
             {selected?.id === card.id && <SelectedCard selected={selected} />}
-            <div className="z-10 absolute text-xl mx-4 bg-white w-full my-96 drop-shadow-xl px-2 rounded-l-lg max-sm:mt-[360px]">{card.cardText}</div>
+            <div className="absolute bottom-10 text-white z-10 text-5xl font-bold mx-4 bg-transparent w-full h-fit  drop-shadow-xl px-2 rounded-l-lg max-sm:mt-[360px]">{card.cardText}</div>
             <ImageComponent card={card}/>
           </motion.div>
         </div>
@@ -74,7 +74,7 @@ const ImageComponent = ({ card }: { card: Card }) => {
       height="500"
       width="500"
       className={cn(
-        `object-cover absolute inset-0 h-full w-full transition duration-200 hover:scale-110 hover:brightness-50`
+        `object-cover z-5 absolute inset-0 h-full w-full transition duration-200 hover:scale-110 hover:brightness-50`
       )}
       alt="thumbnail"
     />

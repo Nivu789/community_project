@@ -15,8 +15,17 @@ const EventsBlock = () => {
     const [postsPerPage] = useState(5)
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage
-    const currentPosts = events.slice(indexOfFirstPost,indexOfLastPost)
+    const currentPosts = events
+  .slice(indexOfFirstPost, indexOfLastPost)
+  .sort((a: { createdAt: string }, b: { createdAt: string }) => {
+    const timestampA = new Date(a.createdAt).getTime();
+    console.log(timestampA)
+    const timestampB = new Date(b.createdAt).getTime();
+    console.log(timestampB-timestampA)
+    return timestampB - timestampA; // Sort in descending order
+  });
 
+    console.log(currentPosts)
     const paginate = (page:number) =>{
       setCurrentPage(page)
     }

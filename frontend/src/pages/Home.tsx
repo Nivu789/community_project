@@ -8,13 +8,14 @@ const Home = () => {
 
   return (
     <>
-        <Container>
+        {/* <Container> */}
         <IntroSection/>
             
-        </Container>
-        <Container>
+        {/* </Container> */}
+        {/* <Container> */}
             <MidSection/>
-        </Container>
+        {/* </Container> */}
+
         {/* <Container>
         <BottomSection/>
         

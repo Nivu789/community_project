@@ -57,8 +57,8 @@ const Announcement = () => {
     
 
   return (
-    <div className='announcement-container lg:h-[700px] flex gap-1 lg:pl-6'>
-        <div className='text-xl flex justify-between'>
+    <div className='announcement-container flex gap-1 lg:pl-6'>
+        <div className='text-xl flex justify-between items-center'>
             <div className='flex'><img src="./loud.gif" className="w-20 h-20 absolute" alt="" /><motion.div className='pl-16 text-blue-700' animate={{scale:1.2}} transition={{duration:1,repeat: Infinity, repeatType: "reverse"}}>Announcements</motion.div></div>
             <Link to={'/allannouncements'}><div className='flex items-center gap-2'>See more<MdOutlineReadMore /></div></Link>
         </div>
@@ -67,19 +67,21 @@ const Announcement = () => {
         
         <div>
         {announcementsFromHook && announcementsFromHook.map((item,index)=>(
-            <div className={`announcement-item ${isAnimating && index === 0 ? 'slide-out' : 'slide-in'} flex bg-orange-300  border shadow-2xl`} key={item._id}>
+            <div className={`announcement-item ${isAnimating && index === 0 ? 'slide-out' : 'slide-in'} flex bg-orange-300  md:flex-row flex-col gap-3 md:gap-0 border shadow-2xl md:justify-between items-center`} key={item._id}>
                 
                 <div className='min-w-64 font-semibold w-64'>
-                    <div className='max-w-1/2'>{item.title}</div>
+                    <div className='max-w-1/2 text-sm'>{item.title}</div>
                 </div>
-                <div className='flex flex-col absolute ml-80 w-28 items-center -mt-5 gap-2'>
+                
+                <div className='flex flex-col w-28 items-center gap-2'>
+                {item.file && <div><a href={item.file.toString()} className='text-sm'><FaFilePdf className='text-red-600'/></a></div>}
                     <div className='bg-orange-800 py-2 px-4 flex flex-col items-center w-3/4 text-white'>
                         <div>{moment(item.lastDate).format('MMM')}<hr></hr></div>
                         
                         <div>{moment(item.lastDate).format('DD')}</div>
                     </div>
                 </div>
-                {item.file && <div><a href="http://" className='text-sm'><FaFilePdf className='text-red-600'/>Click here</a></div>}
+                
             </div>
         ))}
         </div>

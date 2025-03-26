@@ -18,7 +18,8 @@ export const useListFilesInGallery = (refetch: boolean, prefix: string, userType
                 })
                     .then((response) => {
                         if (response.data.folders) {
-
+                            console.log(response)
+                            console.log("hereeeeee")
                             setList(response.data.folders)
                         }
                     })
@@ -33,6 +34,7 @@ export const useListFilesInGallery = (refetch: boolean, prefix: string, userType
         } catch (error) {
             console.log(error)
         } finally {
+            console.log("CAAAAAAAAAAAA")
             setLoading(false)
         }
     }, [refetch])

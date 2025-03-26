@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import AWS from 'aws-sdk'
 
 const s3 = new AWS.S3({
-    accessKeyId: "AKIA47CR3SDNCC45LOEX",
-    secretAccessKey: "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",
+    accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
+    secretAccessKey: "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",
     region: 'us-east-1',
     
 });
@@ -14,6 +14,10 @@ export const s3Upload = (req:Request,res:Response,next:NextFunction) =>{
         console.log("body",req.body)
         if(imgSrc){
 
+            if(imgSrc.includes("samskrithibucket")){
+                next()
+            }
+
             const base64Data = imgSrc.replace(/^data:image\/\w+;base64,/, '');
             // Convert the base64 string to a buffer
             const buffer = Buffer.from(base64Data, 'base64');
@@ -21,7 +25,7 @@ export const s3Upload = (req:Request,res:Response,next:NextFunction) =>{
 
 
             const uploadParams = {
-                Bucket: 'samskruthibucket', // Bucket into which you want to upload file
+                Bucket: 'samskrithibucket', // Bucket into which you want to upload file
                 Key: folderName+title+"."+mimeType.slice(6,mimeType.length), // File name you want to save as in S3
                 Body: buffer, // File buffer
                 ContentType: mimeType,

@@ -181,8 +181,26 @@ export const deleteAnnouncement = async(req:Request,res:Response,next:NextFuncti
 export const getGalleryFolders = async(req:Request,res:Response,next:NextFunction) =>{
     try {
         const folders = await GALLERY.find({},{folderName:1,_id:0}).sort({dateCreated:-1})
+        console.log(folders)
         const folderNames = folders.map((item)=>item.folderName)
         res.json({folderNames})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const deleteGalleryFolder = async(req:Request,res:Response) =>{
+    try {
+        const {folderName} = await req.body
+        if(folderName){
+            const deleteFolder = await GALLERY.findOneAndDelete({folderName})
+            if(deleteFolder){
+                return res.json({success:true,message:"Folder deleted"})
+            }else{
+                return res.json({success:false,message:"Folder deletion failed"})
+            }
+        }
     } catch (error) {
         console.log(error)
     }
