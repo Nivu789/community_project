@@ -3,9 +3,9 @@ import AWS, { RDS } from 'aws-sdk'
 import ANNOUNCEMENT from "../models/announcementModel";
 
 const s3 = new AWS.S3({
-    accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
-    secretAccessKey: "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",
-    region: 'us-east-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
     
 });
 

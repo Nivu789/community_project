@@ -4,10 +4,10 @@ import multer from 'multer'
 import multerS3 from 'multer-s3'
 
 const s3 = new S3Client({
-    region: 'us-east-1',
+    region: process.env.AWS_REGION,
     credentials: {
-        accessKeyId: "AKIA6LNJWUEZZZSTUHG2",
-        secretAccessKey: "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"
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     }
 })
 
